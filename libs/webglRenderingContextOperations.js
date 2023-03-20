@@ -33,7 +33,7 @@ getSupportedExtensions = function () {
  * @return {Object}
  */
 getExtension = function (name) {
-	var name = Or(["ANGLE_instanced_arrays", "EXT_blend_minmax", "EXT_color_buffer_float", "EXT_color_buffer_half_float", "EXT_disjoint_timer_query", "EXT_frag_depth", "EXT_sRGB", "EXT_shader_texture_lod", "EXT_texture_filter_anisotropic", "OES_element_index_uint", "OES_standard_derivatives", "OES_texture_float", "OES_texture_float_linear", "OES_texture_half_float", "OES_texture_half_float_linear", "OES_vertex_array_object", "WEBGL_color_buffer_float", "WEBGL_compressed_texture_astc", "WEBGL_compressed_texture_atc", "WEBGL_compressed_texture_etc", "WEBGL_compressed_texture_etc1", "WEBGL_compressed_texture_pvrtc", "WEBGL_compressed_texture_s3tc", "WEBGL_compressed_texture_s3tc_srgb", "WEBGL_debug_renderer_info", "WEBGL_debug_shaders", "WEBGL_depth_texture", "WEBGL_draw_buffers", "WEBGL_lose_context"])
+	var name = Or(["\x22ANGLE_instanced_arrays\x22", "\x22EXT_blend_minmax\x22", "\x22EXT_color_buffer_float\x22", "\x22EXT_color_buffer_half_float\x22", "\x22EXT_disjoint_timer_query\x22", "\x22EXT_float_blend_Experimental\x22", "\x22EXT_frag_depth\x22", "\x22EXT_shader_texture_lod\x22", "\x22EXT_sRGB\x22", "\x22EXT_texture_compression_bptc\x22", "\x22EXT_texture_compression_rgtc\x22", "\x22EXT_texture_filter_anisotropic\x22", "\x22EXT_texture_norm16\x22", "\x22KHR_parallel_shader_compile\x22", "\x22OES_draw_buffers_indexed\x22", "\x22OES_element_index_uint\x22", "\x22OES_fbo_render_mipmap\x22", "\x22OES_standard_derivatives\x22", "\x22OES_texture_float\x22", "\x22OES_texture_float_linear\x22", "\x22OES_texture_half_float\x22", "\x22OES_texture_half_float_linear\x22", "\x22OES_vertex_array_object\x22", "\x22OVR_multiview2\x22", "\x22WEBGL_color_buffer_float\x22", "\x22WEBGL_compressed_texture_astc\x22", "\x22WEBGL_compressed_texture_etc\x22", "\x22WEBGL_compressed_texture_etc1\x22", "\x22WEBGL_compressed_texture_pvrtc\x22", "\x22WEBGL_compressed_texture_s3tc\x22", "\x22WEBGL_compressed_texture_s3tc_srgb\x22", "\x22WEBGL_debug_renderer_info\x22", "\x22WEBGL_debug_shaders\x22", "\x22WEBGL_depth_texture\x22", "\x22WEBGL_draw_buffers\x22", "\x22WEBGL_lose_context\x22", "\x22WEBGL_multi_draw\x22"])
 	return [name]
 }
 
@@ -59,7 +59,7 @@ activeTexture = function () {
  * @param {string} name
  */
 bindAttribLocation = function () {
-	return [Or(programs), number(), "vColor"]
+	return [Or(programs), number_Uint8Array(), "vColor"]
 }
 
 /**
@@ -153,9 +153,13 @@ blendFuncSeparate = function () {
 //  * @param {ArrayBufferView|ArrayBuffer|number} data
 //  * @param {number} usage
 
-// bufferData = function(){
+bufferData = function (target, srcData, usage) {
+	var target = Or(["gl.ARRAY_BUFFER", "gl.ELEMENT_ARRAY_BUFFER", "gl.COPY_READ_BUFFER", "gl.COPY_WRITE_BUFFER", "gl.TRANSFORM_FEEDBACK_BUFFER", "gl.UNIFORM_BUFFER", "gl.PIXEL_PACK_BUFFER", "gl.PIXEL_UNPACK_BUFFER"])
+	var usage = Or(["gl.BUFFER_SIZE", "gl.BUFFER_USAGE", "gl.STATIC_DRAW", "gl.DYNAMIC_DRAW", "gl.STREAM_DRAW", "gl.STATIC_READ", "gl.DYNAMIC_READ", "gl.STREAM_READ", "gl.STATIC_COPY", "gl.DYNAMIC_COPY", "gl.STREAM_COPY"])
+	var srcData = Or(array_buffers)
+	return [target, srcData, usage]
 
-// }
+}
 
 /**
  * @param {number} target
@@ -203,7 +207,7 @@ clearDepth = function () {
  * @param {number} s
  */
 clearStencil = function () {
-	return [number()]
+	return [number_Uint8Array()]
 }
 
 /**
@@ -213,7 +217,8 @@ clearStencil = function () {
  * @param {boolean} alpha
  */
 colorMask = function () {
-	return [floatValue(), floatValue(), floatValue(), floatValue()]
+	// return [floatValue(), floatValue(), floatValue(), floatValue()]
+	return [Or(['true', 'false']),Or(['true', 'false']),Or(['true', 'false']),Or(['true', 'false'])]
 }
 
 /**
@@ -263,7 +268,7 @@ copyTexImage2D = function (target, level, format, x, y, width, height, border) {
 	var target = Or(["gl.TEXTURE_2D", "gl.TEXTURE_CUBE_MAP_POSITIVE_X", "gl.TEXTURE_CUBE_MAP_NEGATIVE_X", "gl.TEXTURE_CUBE_MAP_POSITIVE_Y", "gl.TEXTURE_CUBE_MAP_NEGATIVE_Y", "gl.TEXTURE_CUBE_MAP_POSITIVE_Z", "gl.TEXTURE_CUBE_MAP_NEGATIVE_Z"])
 	var format = Or(["gl.ALPHA", "gl.RGB", "gl.RGBA", "gl.LUMINANCE", "gl.LUMINANCE_ALPHA"])
 
-	return [target, number(), format, number(), number(), number(), number(), number()]
+	return [target, number_Uint8Array(), format, number_Uint8Array(), number_Uint8Array(), number_Uint8Array(), number_Uint8Array(), number_Uint8Array()]
 }
 
 /**
@@ -279,7 +284,7 @@ copyTexImage2D = function (target, level, format, x, y, width, height, border) {
 copyTexSubImage2D = function (target, level, xoffset, yoffset, x, y, width, height) {
 	var target = Or(["gl.TEXTURE_2D", "gl.TEXTURE_CUBE_MAP_POSITIVE_X", "gl.TEXTURE_CUBE_MAP_NEGATIVE_X", "gl.TEXTURE_CUBE_MAP_POSITIVE_Y", "gl.TEXTURE_CUBE_MAP_NEGATIVE_Y", "gl.TEXTURE_CUBE_MAP_POSITIVE_Z", "gl.TEXTURE_CUBE_MAP_NEGATIVE_Z"])
 
-	return [target, number(), number(), number(), number(), number(), number(), number()]
+	return [target, number_Uint8Array(), number_Uint8Array(), number_Uint8Array(), number_Uint8Array(), number_Uint8Array(), number_Uint8Array(), number_Uint8Array()]
 
 }
 
@@ -303,9 +308,9 @@ createFramebuffer = function () {
  * @return {!WebGLProgram}
  * @nosideeffects
  */
-createProgram = function () {
-	return []
-}
+// createProgram = function () {
+// 	return []
+// }
 
 /**
  * @return {!WebGLRenderbuffer}
@@ -419,7 +424,7 @@ disable = function (flags) {
  * @param {number} index
  */
 disableVertexAttribArray = function (index) {
-	return [number()]
+	return [number_Uint8Array()]
 }
 
 /**
@@ -429,7 +434,7 @@ disableVertexAttribArray = function (index) {
  */
 drawArrays = function (mode, first, count) {
 	var mode = Or(["gl.POINTS", "gl.LINE_STRIP", "gl.LINE_LOOP", "gl.LINES", "gl.TRIANGLE_STRIP", "gl.TRIANGLE_FAN", "gl.TRIANGLES"])
-	return [mode, number(), number()]
+	return [mode, number_Uint8Array(), number_Uint8Array()]
 }
 
 /**
@@ -441,7 +446,7 @@ drawArrays = function (mode, first, count) {
 drawElements = function (mode, count, type, offset) {
 	var mode = Or(["gl.POINTS", "gl.LINE_STRIP", "gl.LINE_LOOP", "gl.LINES", "gl.TRIANGLE_STRIP", "gl.TRIANGLE_FAN", "gl.TRIANGLES"])
 	var type = Or(["gl.UNSIGNED_BYTE", "gl.UNSIGNED_SHORT", "gl.UNSIGNED_INT"])
-	return [mode, number(), number(), number()]
+	return [mode, number_Uint8Array(), type, number_Uint8Array()]
 }
 
 /**
@@ -455,7 +460,7 @@ enable = function (cap) {
  * @param {number} index
  */
 enableVertexAttribArray = function (index) {
-	return [number()]
+	return [number_Uint8Array()]
 }
 
 finish = function () { return [] }
@@ -488,7 +493,7 @@ framebufferTexture2D = function (target, attachment, textarget, texture, level) 
 	var attachment = Or(["gl.COLOR_ATTACHMENT1", "gl.COLOR_ATTACHMENT2", "gl.COLOR_ATTACHMENT3", "gl.COLOR_ATTACHMENT4", "gl.COLOR_ATTACHMENT5", "gl.COLOR_ATTACHMENT6", "gl.COLOR_ATTACHMENT7", "gl.COLOR_ATTACHMENT8", "gl.COLOR_ATTACHMENT9", "gl.COLOR_ATTACHMENT10", "gl.COLOR_ATTACHMENT11", "gl.COLOR_ATTACHMENT12", "gl.COLOR_ATTACHMENT13", "gl.COLOR_ATTACHMENT14", "gl.COLOR_ATTACHMENT15", "gl.DEPTH_ATTACHMENT", "gl.STENCIL_ATTACHMENT", "gl.DEPTH_STENCIL_ATTACHMENT", "ext.COLOR_ATTACHMENT0_WEBGL", "ext.COLOR_ATTACHMENT1_WEBGL", "ext.COLOR_ATTACHMENT2_WEBGL", "ext.COLOR_ATTACHMENT3_WEBGL", "ext.COLOR_ATTACHMENT4_WEBGL", "ext.COLOR_ATTACHMENT5_WEBGL", "ext.COLOR_ATTACHMENT6_WEBGL", "ext.COLOR_ATTACHMENT7_WEBGL", "ext.COLOR_ATTACHMENT8_WEBGL", "ext.COLOR_ATTACHMENT9_WEBGL", "ext.COLOR_ATTACHMENT10_WEBGL", "ext.COLOR_ATTACHMENT11_WEBGL", "ext.COLOR_ATTACHMENT12_WEBGL", "ext.COLOR_ATTACHMENT13_WEBGL", "ext.COLOR_ATTACHMENT14_WEBGL", "ext.COLOR_ATTACHMENT15_WEBGL"])
 	var textarget = Or(["gl.TEXTURE_2D", "gl.TEXTURE_CUBE_MAP_POSITIVE_X", "gl.TEXTURE_CUBE_MAP_NEGATIVE_X", "gl.TEXTURE_CUBE_MAP_POSITIVE_Y", "gl.TEXTURE_CUBE_MAP_NEGATIVE_Y", "gl.TEXTURE_CUBE_MAP_POSITIVE_Z", "gl.TEXTURE_CUBE_MAP_NEGATIVE_Z"])
 
-	return [target, attachment, textarget, Or(textures), number()]
+	return [target, attachment, textarget, Or(textures), number_Uint8Array()]
 }
 
 /**
@@ -513,7 +518,7 @@ generateMipmap = function (target) {
  */
 getActiveAttrib = function (program, index) {
 
-	return [Or(programs), number()]
+	return [Or(programs), number_Uint8Array()]
 }
 
 /**
@@ -523,7 +528,7 @@ getActiveAttrib = function (program, index) {
  * @nosideeffects
  */
 getActiveUniform = function (program, index) {
-	return [Or(programs), number()]
+	return [Or(programs), number_Uint8Array()]
 }
 
 /**
@@ -542,7 +547,8 @@ getAttachedShaders = function (program) {
  * @nosideeffects
  */
 getAttribLocation = function (program, name) {
-	return [Or(programs), Or(["vColor", "a_position", "color"])]
+	var name = Or(["vColor", "a_position", "color"])
+	return [programs, name]
 }
 
 /**
@@ -688,7 +694,9 @@ getUniform = function (program, location) {
  * @nosideeffects
  */
 getUniformLocation = function (program, name) {
-	return [Or(programs), Or(["vColor", "a_position", "color"])]
+	var program = Or(programs)
+	var name =  Or(["vColor", "a_position", "color"])
+	return [program, name]
 }
 
 /**
@@ -699,7 +707,7 @@ getUniformLocation = function (program, name) {
  */
 getVertexAttrib = function (index, pname) {
 	var pname = Or(["ext.VERTEX_ATTRIB_ARRAY_DIVISOR_ANGLE", "gl.BYTE", "gl.CURRENT_VERTEX_ATTRIB", "gl.FIXED", "gl.FLOAT", "gl.SHORT", "gl.UNSIGNED_BYTE", "gl.UNSIGNED_SHORT", "gl.VERTEX_ATTRIB_ARRAY_BUFFER_BINDING", "gl.VERTEX_ATTRIB_ARRAY_DIVISOR", "gl.VERTEX_ATTRIB_ARRAY_ENABLED", "gl.VERTEX_ATTRIB_ARRAY_INTEGER", "gl.VERTEX_ATTRIB_ARRAY_NORMALIZED", "gl.VERTEX_ATTRIB_ARRAY_SIZE", "gl.VERTEX_ATTRIB_ARRAY_STRIDE", "gl.VERTEX_ATTRIB_ARRAY_TYPE"])
-	return [number(), pname]
+	return [number_Uint8Array(), pname]
 }
 
 /**
@@ -709,7 +717,7 @@ getVertexAttrib = function (index, pname) {
  * @nosideeffects
  */
 getVertexAttribOffset = function (index, pname) {
-	return [number(), "gl.VERTEX_ATTRIB_ARRAY_POINTER"]
+	return [number_Uint8Array(), "gl.VERTEX_ATTRIB_ARRAY_POINTER"]
 }
 
 /**
@@ -789,7 +797,7 @@ isTexture = function (texture) {
  * @param {number} width
  */
 lineWidth = function (width) {
-	return [number()]
+	return [number_Uint8Array()]
 }
 
 /**
@@ -805,7 +813,7 @@ linkProgram = function (program) {
  */
 pixelStorei = function (pname, param) {
 	var pname = Or(["gl.PACK_ALIGNMENT", "gl.PACK_ROW_LENGTH", "gl.PACK_SKIP_PIXELS", "gl.PACK_SKIP_ROWS", "gl.UNPACK_ALIGNMENT", "gl.UNPACK_COLORSPACE_CONVERSION_WEBGL", "gl.UNPACK_FLIP_Y_WEBGL", "gl.UNPACK_IMAGE_HEIGHT", "gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL", "gl.UNPACK_ROW_LENGTH", "gl.UNPACK_SKIP_IMAGES", "gl.UNPACK_SKIP_PIXELS", "gl.UNPACK_SKIP_ROWS"])
-	return [pname, number()]
+	return [pname, number_Uint8Array()]
 }
 
 /**
@@ -813,7 +821,7 @@ pixelStorei = function (pname, param) {
  * @param {number} units
  */
 polygonOffset = function (factor, units) {
-	return [number(), number()]
+	return [number_Uint8Array(), number_Uint8Array()]
 
 }
 
@@ -830,7 +838,7 @@ readPixels = function (x, y, width, height, format, type, pixels) {
 	var format = Or(["gl.ALPHA", "gl.RGB", "gl.RGBA"])
 	var type = Or(["gl.UNSIGNED_BYTE", "gl.UNSIGNED_SHORT_5_6_5", "gl.UNSIGNED_SHORT_4_4_4_4", "gl.UNSIGNED_SHORT_5_5_5_1", "gl.FLOAT"])
 
-	return [number(), number(), number(), number(), format, type, Or(array_buffers)]
+	return [number_Uint8Array(), number_Uint8Array(), number_Uint8Array(), number_Uint8Array(), format, type, Or(array_buffers)]
 }
 
 /**
@@ -841,7 +849,7 @@ readPixels = function (x, y, width, height, format, type, pixels) {
  */
 renderbufferStorage = function (target, internalformat, width, height) {
 	var internalFormat = Or(["ext.RGB32F_EXT", "ext.RGBA32F_EXT", "ext.SRGB8_ALPHA8_EXT", "gl.DEPTH24_STENCIL8", "gl.DEPTH32F_STENCIL8", "gl.DEPTH_COMPONENT16", "gl.DEPTH_COMPONENT24", "gl.DEPTH_COMPONENT32F", "gl.DEPTH_STENCIL", "gl.R11F_G11F_B10F", "gl.R16F", "gl.R16I", "gl.R16UI", "gl.R32F", "gl.R32I", "gl.R32UI", "gl.R8", "gl.R8I", "gl.R8UI", "gl.RG16F", "gl.RG16I", "gl.RG16UI", "gl.RG32F", "gl.RG32I", "gl.RG32UI", "gl.RG8", "gl.RG8I", "gl.RG8UI", "gl.RGB10_A2", "gl.RGB10_A2UI", "gl.RGB565", "gl.RGB5_A1", "gl.RGB8", "gl.RGBA16F", "gl.RGBA16I", "gl.RGBA16UI", "gl.RGBA32F", "gl.RGBA32I", "gl.RGBA32UI", "gl.RGBA4", "gl.RGBA8", "gl.RGBA8I", "gl.RGBA8UI", "gl.SRGB8_ALPHA8", "gl.STENCIL_INDEX8"])
-	return ["gl.RENDERBUFFER", internalFormat, number(), number()]
+	return ["gl.RENDERBUFFER", internalFormat, number_Uint8Array(), number_Uint8Array()]
 }
 
 /**
@@ -859,7 +867,7 @@ sampleCoverage = function (coverage, invert) {
  * @param {number} height
  */
 scissor = function (x, y, width, height) {
-	return [number(), number(), number(), number()]
+	return [small_values(), small_values(), small_values(), small_values()]
 }
 
 /**
@@ -877,7 +885,7 @@ scissor = function (x, y, width, height) {
  */
 stencilFunc = function (func, ref, mask) {
 	var func = Or(["gl.ALWAYS", "gl.EQUAL", "gl.GEQUAL", "gl.GREATER", "gl.LEQUAL", "gl.LESS", "gl.NEVER", "gl.NOTEQUAL"])
-	return [func, number(), number()]
+	return [func, number_Uint8Array(), number_Uint8Array()]
 }
 
 /**
@@ -889,14 +897,14 @@ stencilFunc = function (func, ref, mask) {
 stencilFuncSeparate = function (face, func, ref, mask) {
 	var face = Or(["gl.FRONT", "gl.BACK", "gl.FRONT_AND_BACK"])
 	var func = Or(["gl.ALWAYS", "gl.EQUAL", "gl.GEQUAL", "gl.GREATER", "gl.LEQUAL", "gl.LESS", "gl.NEVER", "gl.NOTEQUAL"])
-	return [face, func, number(), number()]
+	return [face, func, number_Uint8Array(), number_Uint8Array()]
 }
 
 /**
  * @param {number} mask
  */
 stencilMask = function (mask) {
-	return [number()]
+	return [number_Uint8Array()]
 }
 
 /**
@@ -905,7 +913,7 @@ stencilMask = function (mask) {
  */
 stencilMaskSeparate = function (face, mask) {
 	var face = Or(["gl.FRONT", "gl.BACK", "gl.FRONT_AND_BACK"])
-	return [face, number()]
+	return [face, number_Uint8Array()]
 }
 
 /**
@@ -971,7 +979,7 @@ texParameterf = function (target, pname, param) {
 texParameteri = function (target, pname, param) {
 	var target = Or(["gl.TEXTURE_2D", "gl.TEXTURE_CUBE_MAP", "gl.TEXTURE_3D", "gl.TEXTURE_2D_ARRAY"])
 	var pname = Or(["ext.TEXTURE_MAX_ANISOTROPY_EXT", "gl.TEXTURE_BASE_LEVEL", "gl.TEXTURE_COMPARE_FUNC", "gl.TEXTURE_COMPARE_MODE", "gl.TEXTURE_MAG_FILTER", "gl.TEXTURE_MAX_LEVEL", "gl.TEXTURE_MAX_LOD", "gl.TEXTURE_MIN_FILTER", "gl.TEXTURE_MIN_LOD", "gl.TEXTURE_WRAP_R", "gl.TEXTURE_WRAP_S", "gl.TEXTURE_WRAP_T"])
-	return [target, pname, number()]
+	return [target, pname, number_Uint8Array()]
 }
 
 /**
@@ -996,7 +1004,7 @@ texParameteri = function (target, pname, param) {
  * @param {number} value
  */
 uniform1f = function (location, value) {
-	return [Or(locations), number()]
+	return [Or(locations), number_Uint8Array()]
 }
 
 /**
@@ -1004,7 +1012,7 @@ uniform1f = function (location, value) {
  * @param {Float32Array|Array.<number>} value
  */
 uniform1fv = function (location, value) {
-	return [Or(locations), number()]
+	return [Or(locations), number_Uint8Array()]
 }
 
 /**
@@ -1012,7 +1020,7 @@ uniform1fv = function (location, value) {
  * @param {number} value
  */
 uniform1i = function (location, value) {
-	return [Or(locations), number()]
+	return [Or(locations), number_Uint8Array()]
 }
 
 /**
@@ -1020,7 +1028,7 @@ uniform1i = function (location, value) {
  * @param {Int32Array|Array.<number>} value
  */
 uniform1iv = function (location, value) {
-	return [Or(locations), number()]
+	return [Or(locations), number_Uint8Array()]
 }
 
 /**
@@ -1029,7 +1037,7 @@ uniform1iv = function (location, value) {
  * @param {number} value2
  */
 uniform2f = function (location, value1, value2) {
-	return [Or(locations), number(), number()]
+	return [Or(locations), number_Uint8Array(), number_Uint8Array()]
 }
 
 /**
@@ -1037,7 +1045,7 @@ uniform2f = function (location, value1, value2) {
  * @param {Float32Array|Array.<number>} value
  */
 uniform2fv = function (location, value) {
-	return [Or(locations), number()]
+	return [Or(locations), number_Uint8Array()]
 }
 
 /**
@@ -1046,7 +1054,7 @@ uniform2fv = function (location, value) {
  * @param {number} value2
  */
 uniform2i = function (location, value1, value2) {
-	return [Or(locations), number(), number()]
+	return [Or(locations), number_Uint8Array(), number_Uint8Array()]
 }
 
 /**
@@ -1054,7 +1062,7 @@ uniform2i = function (location, value1, value2) {
  * @param {Int32Array|Array.<number>} value
  */
 uniform2iv = function (location, value) {
-	return [Or(locations), number()]
+	return [Or(locations), number_Uint8Array()]
 }
 
 /**
@@ -1064,7 +1072,7 @@ uniform2iv = function (location, value) {
  * @param {number} value3
  */
 uniform3f = function (location, value1, value2, value3) {
-	return [Or(locations), number(), number(), number()]
+	return [Or(locations), number_Uint8Array(), number_Uint8Array(), number_Uint8Array()]
 }
 
 /**
@@ -1072,7 +1080,7 @@ uniform3f = function (location, value1, value2, value3) {
  * @param {Float32Array|Array.<number>} value
  */
 uniform3fv = function (location, value) {
-	return [Or(locations), number()]
+	return [Or(locations), number_Uint8Array()]
 }
 
 /**
@@ -1082,7 +1090,7 @@ uniform3fv = function (location, value) {
  * @param {number} value3
  */
 uniform3i = function (location, value1, value2, value3) {
-	return [Or(locations), number(), number(), number()]
+	return [Or(locations), number_Uint8Array(), number_Uint8Array(), number_Uint8Array()]
 }
 
 /**
@@ -1090,7 +1098,7 @@ uniform3i = function (location, value1, value2, value3) {
  * @param {Int32Array|Array.<number>} value
  */
 uniform3iv = function (location, value) {
-	return [Or(locations), number()]
+	return [Or(locations), number_Uint8Array()]
 }
 
 /**
@@ -1101,7 +1109,7 @@ uniform3iv = function (location, value) {
  * @param {number} value4
  */
 uniform4f = function (location, value1, value2, value3, value4) {
-	return [Or(locations), number(), number(), number(), number()]
+	return [Or(locations), number_Uint8Array(), number_Uint8Array(), number_Uint8Array(), number_Uint8Array()]
 }
 
 /**
@@ -1109,7 +1117,7 @@ uniform4f = function (location, value1, value2, value3, value4) {
  * @param {Float32Array|Array.<number>} value
  */
 uniform4fv = function (location, value) {
-	return [Or(locations), number()]
+	return [Or(locations), number_Uint8Array()]
 }
 
 /**
@@ -1120,7 +1128,7 @@ uniform4fv = function (location, value) {
  * @param {number} value4
  */
 uniform4i = function (location, value1, value2, value3, value4) {
-	return [Or(locations), number(), number(), number(), number()]
+	return [Or(locations), number_Uint8Array(), number_Uint8Array(), number_Uint8Array(), number_Uint8Array()]
 }
 
 /**
@@ -1128,7 +1136,7 @@ uniform4i = function (location, value1, value2, value3, value4) {
  * @param {Int32Array|Array.<number>} value
  */
 uniform4iv = function (location, value) {
-	return [Or(locations), number()]
+	return [Or(locations), number_Uint8Array()]
 }
 
 /**
@@ -1137,7 +1145,7 @@ uniform4iv = function (location, value) {
  * @param {Float32Array|Array.<number>} data
  */
 uniformMatrix2fv = function (location, transpose, data) {
-	return [Or(locations), Or(["true", "false"]), number()]
+	return [locations, Or(["true", "false"]), number_Uint8Array()]
 }
 
 /**
@@ -1146,7 +1154,8 @@ uniformMatrix2fv = function (location, transpose, data) {
  * @param {Float32Array|Array.<number>} data
  */
 uniformMatrix3fv = function (location, transpose, data) {
-	return [Or(locations), Or(["true", "false"]), number()]
+	var location = Or(locations)
+	return [location , Or(["true", "false"]), number_Uint8Array()]
 }
 
 /**
@@ -1155,7 +1164,9 @@ uniformMatrix3fv = function (location, transpose, data) {
  * @param {Float32Array|Array.<number>} data
  */
 uniformMatrix4fv = function (location, transpose, data) {
-	return [Or(locations), Or(["true", "false"]), number()]
+	var location = Or(locations)
+	var transpose = Or(["true", "false"])
+	return [location, transpose, number_Uint8Array()]
 }
 
 /**
@@ -1177,7 +1188,7 @@ validateProgram = function (program) {
  * @param {number} x
  */
 vertexAttrib1f = function (indx, x) {
-	return [number(), number()]
+	return [number_Uint8Array(), number_Uint8Array()]
 }
 
 /**
@@ -1185,7 +1196,7 @@ vertexAttrib1f = function (indx, x) {
  * @param {Float32Array|Array.<number>} values
  */
 vertexAttrib1fv = function (indx, values) {
-	return [number(), number()]
+	return [number_Uint8Array(), number_Uint8Array()]
 }
 
 /**
@@ -1194,7 +1205,7 @@ vertexAttrib1fv = function (indx, values) {
  * @param {number} y
  */
 vertexAttrib2f = function (indx, x, y) {
-	return [number(), number(), number()]
+	return [number_Uint8Array(), number_Uint8Array(), number_Uint8Array()]
 }
 
 /**
@@ -1202,7 +1213,7 @@ vertexAttrib2f = function (indx, x, y) {
  * @param {Float32Array|Array.<number>} values
  */
 vertexAttrib2fv = function (indx, values) {
-	return [number(), number()]
+	return [number_Uint8Array(), number_Uint8Array()]
 }
 
 /**
@@ -1212,7 +1223,7 @@ vertexAttrib2fv = function (indx, values) {
  * @param {number} z
  */
 vertexAttrib3f = function (indx, x, y, z) {
-	return [number(), number(), number(), number()]
+	return [number_Uint8Array(), number_Uint8Array(), number_Uint8Array(), number_Uint8Array()]
 }
 
 /**
@@ -1220,7 +1231,7 @@ vertexAttrib3f = function (indx, x, y, z) {
  * @param {Float32Array|Array.<number>} values
  */
 vertexAttrib3fv = function (indx, values) {
-	return [number(), number()]
+	return [number_Uint8Array(), number_Uint8Array()]
 }
 
 /**
@@ -1231,7 +1242,7 @@ vertexAttrib3fv = function (indx, values) {
  * @param {number} w
  */
 vertexAttrib4f = function (indx, x, y, z, w) {
-	return [number(), number(), number(), number()]
+	return [number_Uint8Array(), number_Uint8Array(), number_Uint8Array(), number_Uint8Array()]
 }
 
 /**
@@ -1239,7 +1250,7 @@ vertexAttrib4f = function (indx, x, y, z, w) {
  * @param {Float32Array|Array.<number>} values
  */
 vertexAttrib4fv = function (indx, values) {
-	return [number(), number()]
+	return [number_Uint8Array(), number_Uint8Array()]
 }
 
 /**
@@ -1254,7 +1265,7 @@ vertexAttribPointer = function (indx, size, type, normalized, stride, offset) {
 
 	var type = Or(["gl.BYTE", "gl.FLOAT", "gl.HALF_FLOAT", "gl.SHORT", "gl.UNSIGNED_BYTE", "gl.UNSIGNED_SHORT"])
 
-	return [number(), number(), type, Or(["true", "false"]), rint(256), number()]
+	return [number_Uint8Array(), number_Uint8Array(), type, Or(["true", "false"]), rint(256), number_Uint8Array()]
 }
 
 /**
@@ -1264,5 +1275,7 @@ vertexAttribPointer = function (indx, size, type, normalized, stride, offset) {
  * @param {number} height
  */
 viewport = function (x, y, width, height) {
-	return [number(), number(), number(), number()]
+	return [number_Uint8Array(), number_Uint8Array(), number_Uint8Array(), number_Uint8Array()]
 }
+
+// tambahan

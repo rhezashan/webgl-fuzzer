@@ -1,14 +1,18 @@
-require("./libs/randoms.js")
+require("./libs/randoms")
 // webgl operations
 require("./libs/webglRenderingContextOperations.js");
 // webgl2 operations
-// require("./libs/webgl2RenderingContextOperations.js");
-
+require("./libs/webgl2RenderingContextOperations.js");
+// const close = require('close');
+const process = require('process');
+var parseArgs = require('minimist')(process.argv.slice(2));
 var fs = require('fs');
-var webidl = require("./libs/webidl2.js");
+const crypto = require('crypto');
+const path = require('path');
+var webidl = require("./libs/webidl1.js");
 
-// var webgl2file = fs.readFileSync("./lib/webgl2.idl").toString()
-var webgl1file = fs.readFileSync("./libs/webgl.idl").toString()
+var webgl2file = fs.readFileSync(path.resolve(__dirname, 'libs/webgl2.idl')).toString()
+var webgl1file = fs.readFileSync(path.resolve(__dirname, 'libs/webgl.idl')).toString()
 
 checkIfSequence = function (arg) {
 
@@ -38,9 +42,13 @@ bind_variable_to_gl = function (type, iden) {
 // array_buffers
 create_array_buffers = function () {
     var iden = fidentifier()
-    array_buffers.push(iden);
-    var array_buffer_types = ["Int8Array()", "Uint8Array()", "Uint8ClampedArray()", "Int16Array()", "Uint16Array()", "Int32Array()", "Uint32Array()", "Float32Array()", "Float64Array()"]
-    return `var ${iden} = new ${Or(array_buffer_types)};\ngl.bufferData(gl.ARRAY_BUFFER, ${iden}, gl.STATIC_DRAW);`
+    var iden2 = fidentifier()
+    array_buffers.push(iden)
+    // var array_buffer_types = [`Uint8Array(${iden2})`, `Uint8ClampedArray(${iden2})`, `Int16Array(${iden2})`, `Uint16Array(${iden2})`, `Int32Array(${iden2})`, `Uint32Array(${iden2})`, `Float32Array(${iden2})`, `Float64Array(${iden2})`]
+    var array_buffer_types = [`Uint8Array(${iden2})`,`Uint8Array(${iden2})`,`Uint8Array(${iden2})`,`Uint8Array(${iden2})`]
+    // shuffle2(array_buffer_types)
+    // return `var ${iden} = new ${Or(array_buffer_types)};\ngl.bufferData(gl.ARRAY_BUFFER, ${iden}, gl.STATIC_DRAW);\n`
+    return `var ${iden2} = new ArrayBuffer(${number_Uint8Array()});\nvar ${iden} = new ${Or(array_buffer_types)};\n`
 }
 
 // bindings = [];
@@ -126,7 +134,8 @@ create_bindings = function () {
 create_buffers = function () {
     var iden = fidentifier()
     buffers.push(iden)
-    return `var ${iden} = gl.createBuffer();\ngl.bindBuffer(gl.ARRAY_BUFFER, ${iden});\n`
+    // return `var ${iden} = gl.createBuffer();\ngl.bindBuffer(gl.ARRAY_BUFFER, ${iden});\n`
+    return `var ${iden} = gl.createBuffer();\n`
 }
 
 // framebuffers = [];
@@ -140,7 +149,7 @@ create_frame_buffers = function () {
 create_render_buffers = function () {
     var iden = fidentifier();
     renderbuffers.push(iden);
-    return `var ${iden} = gl.createRenderbuffer();\ngl.bindRenderbuffer(gl.RENDERBUFFER, ${iden});`
+    return `var ${iden} = gl.createRenderbuffer();\ngl.bindRenderbuffer(gl.RENDERBUFFER, ${iden});\n`
 }
 
 // locations = [];
@@ -154,7 +163,7 @@ create_locations = function () {
 create_programs = function () {
     var iden = fidentifier()
     programs.push(iden)
-    return `var ${iden} = gl.createProgram();\n`
+    return `var ${iden} = gl.createProgram(gl, vs, fs);\n`
 }
 
 // queries = [];
@@ -168,6 +177,7 @@ create_queries = function () {
 create_samplers = function () {
     var iden = fidentifier()
     samplers.push(iden);
+    samplers.push("null");
     return `var ${iden} = gl.createSampler();\ngl.bindSampler(0, ${iden});\n`
 }
 
@@ -175,6 +185,7 @@ create_samplers = function () {
 create_syncs = function () {
     var iden = fidentifier()
     syncs.push(iden)
+    syncs.push("null")
     return `var ${iden} = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0);\n`
 }
 
@@ -182,6 +193,7 @@ create_syncs = function () {
 create_textures = function () {
     var iden = fidentifier()
     textures.push(iden)
+    textures.push("null")
     return `var ${iden} = gl.createTexture();\ngl.bindTexture(gl.TEXTURE_2D, ${iden});\n`
 }
 
@@ -189,99 +201,31 @@ create_textures = function () {
 create_transform_feedbacks = function () {
     var iden = fidentifier()
     transform_feedbacks.push(iden)
-    return `var ${iden} = gl.createTransformFeedback();\ngl.bindTransformFeedback(gl.TRANSFORM_FEEDBACK,${iden})`
+    transform_feedbacks.push("null")
+    return `var ${iden} = gl.createTransformFeedback();\ngl.bindTransformFeedback(gl.TRANSFORM_FEEDBACK,${iden});\n`
 }
 
+// create_begin_query = function () {
+//     var iden = fidentifier()
+//     begin_query.push(iden)
+//     var targets = ["gl.ANY_SAMPLES_PASSED","gl.ANY_SAMPLES_PASSED_CONSERVATIVE","gl.TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN"]
+//     return `var ${iden} = gl.beginQuery();\ngl.beginQuery(${Or(targets)}, ${iden});\n`
+// }
+
+create_vertex_array = function (){
+    var iden = fidentifier()
+    vertex_array.push(iden)
+    return `var ${iden} = gl.createVertexArray();\n`
+}
+
+create_fence_sync = function(){
+    var iden = fidentifier()
+    fence_sync.push(iden)
+    return `var ${iden} = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0);\n`
+}
 // initialise
 init = function () {
-    var ret = `
-
-    var id = "canvas";
-    var gl = document.getElementById(id).getContext("webgl");
-    var ext = gl.getExtension('EXT_sRGB');
-    var vshader = document.getElementById("vshader").text;
-    var fshader = document.getElementById("fshader").text;
-    var program = gl.createProgram();
-
-  function resize(canvas) {
-    // Lookup the size the browser is displaying the canvas.
-    var displayWidth  = canvas.clientWidth;
-    var displayHeight = canvas.clientHeight;
-   
-    // Check if the canvas is not the same size.
-    if (canvas.width  !== displayWidth ||
-        canvas.height !== displayHeight) {
-   
-      // Make the canvas the same size
-      canvas.width  = displayWidth;
-      canvas.height = displayHeight;
-    }
-  }
-
-  function createShader(gl, type, source) {
-    var shader = gl.createShader(type);
-    gl.shaderSource(shader, source);
-    gl.compileShader(shader);
-    var success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
-    if (success) {
-      return shader;
-    }
-   
-    console.log(gl.getShaderInfoLog(shader));
-    gl.deleteShader(shader);
-  }
-
-  function createProgram(gl, vertexShader, fragmentShader) {
-    var program = gl.createProgram();
-    gl.attachShader(program, vertexShader);
-    gl.attachShader(program, fragmentShader);
-    gl.linkProgram(program);
-    var success = gl.getProgramParameter(program, gl.LINK_STATUS);
-    if (success) {
-      return program;
-    }
-   
-    console.log(gl.getProgramInfoLog(program));
-    gl.deleteProgram(program);
-  }
-
-  var vshader = document.getElementById("vshader").text ;
-  var fshader = document.getElementById("fshader").text ; 
-  var vertexShader   = createShader(gl, gl.VERTEX_SHADER, vshader);
-  var fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fshader);  
-
-  var program = createProgram(gl, vertexShader, fragmentShader);
-  var positionAttributeLocation = gl.getAttribLocation(program, "a_position");
-
-  var positionBuffer = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-
-  var positions = [${webPositions(rint(60))}]
-  var array_buffer =  new Float32Array(positions);
-  gl.bufferData(gl.ARRAY_BUFFER, array_buffer, gl.STATIC_DRAW);
-
-  // var vertexArray = gl.createVertexArray();
-  // gl.bindVertexArray(vertexArray);
-  // gl.enableVertexAttribArray(positionAttributeLocation);
-  // var size = 2;          // 2 components per iteration
-  // var type = gl.FLOAT;   // the data is 32bit floats
-  // var normalize = false; // don't normalize the data
-  // var stride = 0;        // 0 = move forward size * sizeof(type) each iteration to get the next position
-  // var offset = 0;        // start at the beginning of the buffer
-  // gl.vertexAttribPointer(positionAttributeLocation, size, type, normalize, stride, offset)
-
-  resize(gl.canvas);
-  
-  gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-
-  // Clear the canvas
-  gl.clearColor(0, 0, 0, 0);
-  gl.clear(gl.COLOR_BUFFER_BIT);
-
-  gl.useProgram(program);
-// fuzz from here
-
-`
+    var ret = ``
     return ret
 
 }
@@ -319,9 +263,9 @@ generateCall = function (name, argsList, idlTypes) {
     return poc + ")"
 }
 
-fuzzwebgl2 = function () {
+fuzzwebgl1 = function () {
 
-    var webgl2 = []
+    var webgl1 = []
 
     // var tree = webidl.parse(webglfile)
     idlTypes = {}
@@ -370,6 +314,70 @@ fuzzwebgl2 = function () {
             }
 
             if (method_poc)
+                webgl1.push("try{gl." + method_poc + "}catch(e){}\n")
+            else
+                webgl1.push("try{gl." + name + generateCall(name, args, idlTypes) + "}catch(e){}\n")
+        }
+
+        tree = raObject(tree)
+        count += 1
+    }
+    // webgl1.push(getFuzzwebgl2)
+    return webgl1.shuffle().join(" ")
+
+}
+
+fuzzwebgl2 = function () {
+
+    var webgl2 = []
+
+    // var tree = webidl.parse(webglfile)
+    idlTypes = {}
+    constants = {}
+
+    var count = 0
+    var tree = webidl.parse(webgl2file)
+    for (var i in tree) {
+        if (tree[i]['name'] == 'WebGL2RenderingContextBase')
+            WebGL2RenderingContextBase = tree[i]
+    }
+    members = WebGL2RenderingContextBase["members"]
+
+    operations = []
+    for (i in members) {
+        op = members[i]
+        if (op['type'] == 'operation')
+            operations.push(op)
+    }
+    while (count < fuzz_count) {
+
+        mem = ra(operations)
+
+        var name = mem["name"];
+        var args = mem["arguments"]
+        var retType = mem["idlType"]
+
+        if (checkIfSequence(mem["idlType"])) {
+            sequence = true
+            retType = mem["idlType"]["idlType"]["idlType"]
+        } else {
+            retType = mem["idlType"]["idlType"]
+        }
+        for (var k = 0; k < rint(5); k++) {
+
+
+            try {
+                method_args = eval(`${name}()`)
+                try {
+                    method_args = method_args.join()
+                    method_poc = `${name}(${method_args})`
+                } catch (e) {
+                }
+            } catch (e) {
+                method_poc = undefined
+            }
+
+            if (method_poc)
                 webgl2.push("try{gl." + method_poc + "}catch(e){}\n")
             else
                 webgl2.push("try{gl." + name + generateCall(name, args, idlTypes) + "}catch(e){}\n")
@@ -378,32 +386,56 @@ fuzzwebgl2 = function () {
         tree = raObject(tree)
         count += 1
     }
-
+    // console.log(webgl2)
+    // return webgl2.shuffle().join(" ")
     return webgl2.shuffle().join(" ")
 
 }
 
 generate = function () {
     var poc = init();
-    poc += (create_array_buffers())
-    // poc+=(create_bindings());
-    poc += (create_buffers());
-    poc += (create_frame_buffers())
-    // poc+=(create_render_buffers())
-    poc += (create_locations());
+    for (var i = 0; i < 5; i++){
+        // poc += (create_array_buffers())
+        poc += (create_buffers());
+        poc += (create_frame_buffers())
+        poc += (create_array_buffers())
+        poc +=(create_bindings()); // comment
+        poc +=(create_render_buffers()) // comment
+        // poc += (create_locations());
+        // poc +=(create_queries()); // comment
+        poc +=(create_samplers()); // comment
+        poc +=(create_syncs()); // comment
+        poc += (create_textures());
+        // poc +=(create_transform_feedbacks()); // comment
+        // poc +=(create_begin_query());
+        poc +=(create_fence_sync());
+        poc +=(create_vertex_array());
+    }
     poc += (create_programs());
-    // poc+=(create_queries());
-    // poc+=(create_samplers());
-    // poc+=(create_syncs());
-    poc += (create_textures());
-    // poc+=(create_transform_feedbacks());
-    poc += "\n"
-    poc += fuzzwebgl2()
-    poc += `  var primitiveType = gl.TRIANGLES;
-  var offset = 0;
-  var count = 3;
-  gl.drawArrays(primitiveType, offset, count);`
 
+    // poc += (create_array_buffers())
+    // poc +=(create_bindings()); // comment
+    // poc += (create_buffers());
+    // poc += (create_frame_buffers())
+    // poc +=(create_render_buffers()) // comment
+    // poc += (create_locations());
+    // poc += (create_programs());
+    // poc +=(create_queries()); // comment
+    // poc +=(create_samplers()); // comment
+    // poc +=(create_syncs()); // comment
+    // poc += (create_textures());
+    // poc +=(create_transform_feedbacks()); // comment
+    // poc +=(create_begin_query());
+    // poc +=(create_fence_sync());
+    // poc +=(create_vertex_array());
+    poc += "\n";
+    poc += fuzzwebgl1();
+    poc += "//================batas nya dari sini(1)===================\n";
+    poc += fuzzwebgl2();
+    poc += "//================batas nya dari sini(2)===================\n";
+    poc += fuzzwebgl1();
+    poc += "//================batas nya dari sini(1-1)===================\n";
+    poc += fuzzwebgl2();
     return poc
 }
 
@@ -423,18 +455,24 @@ samplers = [];
 syncs = [];
 textures = []
 transform_feedbacks = [];
+begin_query = [];
+vertex_array = [];
+fence_sync = [];
 
-// for(var i=0;i<10;i++){
-// console.log(create_array_buffers())
-// console.log(create_bindings());
-// console.log(create_buffers());
-// console.log(create_locations());
-// console.log(create_programs());
-// console.log(create_queries());
-// console.log(create_samplers());
-// console.log(create_syncs());
-// console.log(create_textures());
-// console.log(create_transform_feedbacks());
+// for(var i=0;i<5;i++){
+// create_array_buffers()
+// create_bindings()
+// create_buffers()
+// create_locations()
+// create_programs()
+// create_queries()
+// create_samplers()
+// create_syncs()
+// create_textures()
+// create_transform_feedbacks()
+// create_begin_query()
+// create_vertex_array()
+// create_fence_sync()
 // }
 
 // console.log(array_buffers)
@@ -451,18 +489,129 @@ transform_feedbacks = [];
 // console.log(generate())
 // var tree = webidl.parse(webgl1file)
 // generate()
-const poc = `
-<script type="vertex" id="vshader">VSHADER_HERE
-</script>
+fuzz = function(){
+    var poc = `
+    <html><head><script>
+    function createShader(gl, type, source)
+    {
+        var shader = gl.createShader(type);
+        gl.shaderSource(shader, source.replace(/^\s+|\s+$/g, ''));
+        gl.compileShader(shader);
+        return shader;
+    }
+    function createProgram(gl, vertexShader, fragmentShader)
+    {
+        var program = gl.createProgram();
+        gl.attachShader(program, vertexShader);
+        gl.attachShader(program, fragmentShader);
+        gl.linkProgram(program); 
+        return program;
+    }
+    </script>
+    <script type="shader" id="vs">
+    #version 300 es
+    precision highp float;
 
-<script type="fragment" id="fshader">FSHADER_HERE
-</script>
+    void main()
+    {
+        gl_Position = vec4(1.0, 0.0, 0.0, 0.0);
+    }
+    </script>
+    <script type="shader" id="fs">
+    #version 300 es
+    precision highp float;
+    out vec4 color;
 
-<canvas id="canvas"  style="height:100%;width: 100%" ></canvas>
+    void main()
+    {
+        color = vec4(1.0, 0.0, 0.0, 1.0);
+    }
+    </script>
+    <script>
+    function corrupt()
+    {
+        let c = document.createElement("canvas");
+        document.body.appendChild(c);
+        let gl = c.getContext("webgl2");
+        let vs = createShader(gl, gl.VERTEX_SHADER, document.querySelector("#vs").text);
+        let fs = createShader(gl, gl.FRAGMENT_SHADER, document.querySelector("#fs").text);
+        // let program = createProgram(gl, vs, fs);
+        // gl.useProgram(program);
 
-<script type="text/javascript">
-${generate()}
-</script>
-`
+        // const PRE_QUERY_CNT = 62;
 
-console.log(poc)
+        // let qry = gl.createQuery();
+        // let tex = gl.createTexture();
+        // let fb = gl.createFramebuffer();
+        // let fb2 = gl.createFramebuffer();
+        // gl.beginQuery(gl.ANY_SAMPLES_PASSED, qry);
+        // for( let i = 0; i < PRE_QUERY_CNT; i++ ){
+        //     gl.drawArrays(gl.POINTS, 0, 1);
+        //     gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array(4));
+        // }
+        // gl.endQuery(gl.ANY_SAMPLES_PASSED);
+        // gl.colorMask(true, false, false, false);
+        // gl.bindTexture(gl.TEXTURE_2D_ARRAY, tex);
+        // gl.texStorage3D(gl.TEXTURE_2D_ARRAY, 1, gl.RGBA8, 2, 2, 2);
+        // gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
+        // gl.getExtension("OVR_multiview2").framebufferTextureMultiviewOVR(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, tex, 0, 0, 2);
+        // gl.clear(gl.COLOR_BUFFER_BIT);
+        // gl.bindFramebuffer(gl.FRAMEBUFFER, fb2);
+        // gl.beginQuery(gl.ANY_SAMPLES_PASSED, qry);
+        ${generate()}
+    }
+    </script></head>
+    <body onload=corrupt()>
+    </body></html>
+    `
+    return poc
+}
+
+// console.log(poc)
+
+random_names = function() {
+    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    );
+  }
+// console.log(random_names());
+generate_files = function(how_many,folder){
+    // var file_generate = 5
+    filenames = ''
+    poc = ''
+    for (var i = 0; i < how_many; i++){
+        poc = fuzz()
+        filenames = path.join(folder, random_names() + ".html")
+        fs.writeFileSync(filenames, poc, (err) => {
+            if (err)
+            console.log(err);
+            else {
+            console.log("File written successfully\n");
+            console.log("The written has the following contents:");
+            }
+        });
+    }
+}
+
+
+run = function(){
+    // console.log(parseArgs);
+    const working_path = path.resolve(__dirname);
+    const args2 = Object.values(parseArgs);
+    // console.log(args2)
+    var how_many = args2[1]
+    var folder = args2[2]
+    // console.log(working_path);
+    if (typeof how_many != "number" && typeof folder != "string") {
+        return false // if not number, return
+    }
+    if (!fs.existsSync(path.resolve(__dirname,folder))){
+        fs.mkdirSync(path.resolve(__dirname),folder);
+        // console.log('Folder created ' + working_path + folder +' ')
+    }
+    generate_files(how_many,folder)
+    // console.log('generated '+ how_many +' of files')
+    // console.log('file are saved on '+ folder +' name')
+}
+
+run()

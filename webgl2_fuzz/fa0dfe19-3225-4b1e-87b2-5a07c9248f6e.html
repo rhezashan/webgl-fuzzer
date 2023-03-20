@@ -1,0 +1,757 @@
+
+    <html><head><script>
+    function createShader(gl, type, source)
+    {
+        var shader = gl.createShader(type);
+        gl.shaderSource(shader, source.replace(/^s+|s+$/g, ''));
+        gl.compileShader(shader);
+        return shader;
+    }
+    function createProgram(gl, vertexShader, fragmentShader)
+    {
+        var program = gl.createProgram();
+        gl.attachShader(program, vertexShader);
+        gl.attachShader(program, fragmentShader);
+        gl.linkProgram(program); 
+        return program;
+    }
+    </script>
+    <script type="shader" id="vs">
+    #version 300 es
+    precision highp float;
+
+    void main()
+    {
+        gl_Position = vec4(1.0, 0.0, 0.0, 0.0);
+    }
+    </script>
+    <script type="shader" id="fs">
+    #version 300 es
+    precision highp float;
+    out vec4 color;
+
+    void main()
+    {
+        color = vec4(1.0, 0.0, 0.0, 1.0);
+    }
+    </script>
+    <script>
+    function corrupt()
+    {
+        let c = document.createElement("canvas");
+        document.body.appendChild(c);
+        let gl = c.getContext("webgl2");
+        let vs = createShader(gl, gl.VERTEX_SHADER, document.querySelector("#vs").text);
+        let fs = createShader(gl, gl.FRAGMENT_SHADER, document.querySelector("#fs").text);
+        // let program = createProgram(gl, vs, fs);
+        // gl.useProgram(program);
+
+        // const PRE_QUERY_CNT = 62;
+
+        // let qry = gl.createQuery();
+        // let tex = gl.createTexture();
+        // let fb = gl.createFramebuffer();
+        // let fb2 = gl.createFramebuffer();
+        // gl.beginQuery(gl.ANY_SAMPLES_PASSED, qry);
+        // for( let i = 0; i < PRE_QUERY_CNT; i++ ){
+        //     gl.drawArrays(gl.POINTS, 0, 1);
+        //     gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array(4));
+        // }
+        // gl.endQuery(gl.ANY_SAMPLES_PASSED);
+        // gl.colorMask(true, false, false, false);
+        // gl.bindTexture(gl.TEXTURE_2D_ARRAY, tex);
+        // gl.texStorage3D(gl.TEXTURE_2D_ARRAY, 1, gl.RGBA8, 2, 2, 2);
+        // gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
+        // gl.getExtension("OVR_multiview2").framebufferTextureMultiviewOVR(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, tex, 0, 0, 2);
+        // gl.clear(gl.COLOR_BUFFER_BIT);
+        // gl.bindFramebuffer(gl.FRAMEBUFFER, fb2);
+        // gl.beginQuery(gl.ANY_SAMPLES_PASSED, qry);
+        var GrIvQwGR = gl.createBuffer();
+var ztSCBDGU = gl.createFramebuffer();
+var kxqnOAaj = new ArrayBuffer(64);
+var ffRJTBvF = new Uint8Array(kxqnOAaj);
+var LQPLhIgp = gl.getParameter(gl.MAX_FRAGMENT_UNIFORM_COMPONENTS);
+var FSzblpQX = gl.createRenderbuffer();
+gl.bindRenderbuffer(gl.RENDERBUFFER, FSzblpQX);
+var ZjRQGsJO = gl.createSampler();
+gl.bindSampler(0, ZjRQGsJO);
+var TuPIKwyD = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0);
+var YZWqwIYQ = gl.createTexture();
+gl.bindTexture(gl.TEXTURE_2D, YZWqwIYQ);
+var JoQKcahG = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0);
+var yQFOrYpi = gl.createVertexArray();
+var XxnxIPcb = gl.createBuffer();
+var mWBNccDY = gl.createFramebuffer();
+var udwDkQaQ = new ArrayBuffer(256);
+var fEgKssOz = new Uint8Array(udwDkQaQ);
+var RFzpHDTt = gl.getParameter(gl.DRAW_FRAMEBUFFER_BINDING);
+var YcEZNnxr = gl.createRenderbuffer();
+gl.bindRenderbuffer(gl.RENDERBUFFER, YcEZNnxr);
+var jgRQlHNP = gl.createSampler();
+gl.bindSampler(0, jgRQlHNP);
+var GRpnSVWK = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0);
+var JFbkAWjU = gl.createTexture();
+gl.bindTexture(gl.TEXTURE_2D, JFbkAWjU);
+var NrYHLFxM = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0);
+var sxsgdUXb = gl.createVertexArray();
+var oufRYXDT = gl.createBuffer();
+var VSAoVEih = gl.createFramebuffer();
+var KVtvRiDA = new ArrayBuffer(30000);
+var sbjcMnGm = new Uint8Array(KVtvRiDA);
+var HysBsYOJ = gl.getParameter(gl.UNPACK_IMAGE_HEIGHT);
+var OXzfHqbM = gl.createRenderbuffer();
+gl.bindRenderbuffer(gl.RENDERBUFFER, OXzfHqbM);
+var MdMleqFs = gl.createSampler();
+gl.bindSampler(0, MdMleqFs);
+var iuiNfkro = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0);
+var jXnfHkAi = gl.createTexture();
+gl.bindTexture(gl.TEXTURE_2D, jXnfHkAi);
+var wkDzMGvy = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0);
+var ADOwgZYR = gl.createVertexArray();
+var VzNhJcuF = gl.createBuffer();
+var YJrlafsE = gl.createFramebuffer();
+var qErTHAFs = new ArrayBuffer(255);
+var bxCgGGoc = new Uint8Array(qErTHAFs);
+var ABreEnbB = gl.getIndexedParameter(gl.TRANSFORM_FEEDBACK_BUFFER_SIZE, 1);
+var tKOTCcDt = gl.createRenderbuffer();
+gl.bindRenderbuffer(gl.RENDERBUFFER, tKOTCcDt);
+var SZSrdbZt = gl.createSampler();
+gl.bindSampler(0, SZSrdbZt);
+var KjGFOJGk = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0);
+var DwPfWZgj = gl.createTexture();
+gl.bindTexture(gl.TEXTURE_2D, DwPfWZgj);
+var iGCsCsFA = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0);
+var VzsyIXjR = gl.createVertexArray();
+var IxDlvdFr = gl.createBuffer();
+var vDeohEZo = gl.createFramebuffer();
+var rRQLkznb = new ArrayBuffer(64);
+var MGCUUNyY = new Uint8Array(rRQLkznb);
+var MrSnyhxJ = gl.getIndexedParameter(gl.TRANSFORM_FEEDBACK_BUFFER_START, 1);
+var BjRFaeDV = gl.createRenderbuffer();
+gl.bindRenderbuffer(gl.RENDERBUFFER, BjRFaeDV);
+var XlLIRHxo = gl.createSampler();
+gl.bindSampler(0, XlLIRHxo);
+var PWtUwkDK = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0);
+var bZbAHyxB = gl.createTexture();
+gl.bindTexture(gl.TEXTURE_2D, bZbAHyxB);
+var EHXkSXgR = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0);
+var BofriiCk = gl.createVertexArray();
+var BqFFaNXT = gl.createProgram(gl, vs, fs);
+
+try{gl.bindTexture(gl.TEXTURE_2D,eTAtbhto)}catch(e){}
+ try{gl.createFramebuffer()}catch(e){}
+ try{gl.getContextAttributes()}catch(e){}
+ try{gl.getError()}catch(e){}
+ try{gl.clearDepth(0.8495284541588575)}catch(e){}
+ try{gl.disableVertexAttribArray(100)}catch(e){}
+ try{gl.getUniform(program,positionAttributeLocation)}catch(e){}
+ try{gl.uniform4iv(positionAttributeLocation,65535)}catch(e){}
+ try{gl.clear(gl.STENCIL_BUFFER_BIT)}catch(e){}
+ try{gl.isBuffer(SYUBpQca)}catch(e){}
+ try{gl.getError()}catch(e){}
+ try{gl.blendEquationSeparate(gl.MIN,gl.FUNC_ADD)}catch(e){}
+ try{gl.uniform3f(positionAttributeLocation,65534,0,2)}catch(e){}
+ try{gl.createTexture()}catch(e){}
+ try{gl.getRenderbufferParameter(gl.RENDERBUFFER,gl.RENDERBUFFER_SAMPLES)}catch(e){}
+ try{gl.deleteTexture(dOsMvhzx)}catch(e){}
+ try{gl.flush()}catch(e){}
+ try{gl.stencilFunc(gl.LEQUAL,10000,3000)}catch(e){}
+ try{gl.createFramebuffer()}catch(e){}
+ try{gl.getAttribLocation(program,HFPJPHsb,BqFFaNXT,vColor)}catch(e){}
+ try{gl.detachShader(HFPJPHsb,vshader)}catch(e){}
+ try{gl.isRenderbuffer(TldbZVZy)}catch(e){}
+ try{gl.linkProgram(BqFFaNXT)}catch(e){}
+ try{gl.texImage2D(0.64,32766,8,0,256,0.4,1,2147483646,0.4)}catch(e){}
+ try{gl.getShaderInfoLog(vshader,fshader)}catch(e){}
+ try{gl.generateMipmap(gl.TEXTURE_2D)}catch(e){}
+ try{gl.bindFramebuffer(gl.READ_FRAMEBUFFER,mWBNccDY)}catch(e){}
+ try{gl.deleteProgram(HFPJPHsb)}catch(e){}
+ try{gl.createShader(gl.FRAGMENT_SHADER)}catch(e){}
+ try{gl.blendEquationSeparate(gl.MAX,gl.FUNC_REVERSE_SUBTRACT)}catch(e){}
+ try{gl.bindFramebuffer(gl.DRAW_FRAMEBUFFER,positionBuffer)}catch(e){}
+ try{gl.getFramebufferAttachmentParameter(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT1,gl.FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE)}catch(e){}
+ try{gl.getError()}catch(e){}
+ try{gl.deleteFramebuffer()}catch(e){}
+ try{gl.uniform4i(positionAttributeLocation,100,128,1000,8)}catch(e){}
+ try{gl.deleteFramebuffer()}catch(e){}
+ try{gl.bindTexture(gl.TEXTURE_2D,bZbAHyxB)}catch(e){}
+ try{gl.uniform1i(positionAttributeLocation,2)}catch(e){}
+ try{gl.checkFramebufferStatus(gl.READ_FRAMEBUFFER)}catch(e){}
+ try{gl.uniform1i(positionAttributeLocation,16)}catch(e){}
+ try{gl.pixelStorei(gl.PACK_ROW_LENGTH,100000)}catch(e){}
+ try{gl.vertexAttrib1f(255,100)}catch(e){}
+ try{gl.compressedTexImage2D(gl.TEXTURE_CUBE_MAP_POSITIVE_Y,0,ext.COMPRESSED_SRGB8_ALPHA8_ASTC_8x5_KHR,4,256,512,null)}catch(e){}
+ try{gl.linkProgram(program)}catch(e){}
+ try{gl.linkProgram(BqFFaNXT)}catch(e){}
+ try{gl.clear(gl.STENCIL_BUFFER_BIT)}catch(e){}
+ try{gl.shaderSource(4294967295,0.8)}catch(e){}
+ try{gl.uniform1i(positionAttributeLocation,8)}catch(e){}
+ try{gl.bindFramebuffer(gl.FRAMEBUFFER,CZsYRCHD)}catch(e){}
+ try{gl.uniform4fv(positionAttributeLocation,30000)}catch(e){}
+ try{gl.getRenderbufferParameter(gl.RENDERBUFFER,gl.RENDERBUFFER_WIDTH)}catch(e){}
+ try{gl.isRenderbuffer(FSzblpQX)}catch(e){}
+ try{gl.stencilOp(gl.ZERO,gl.INCR_WRAP,gl.DECR_WRAP)}catch(e){}
+ try{gl.getParameter(gl.STENCIL_FAIL)}catch(e){}
+ try{gl.isRenderbuffer(BjRFaeDV)}catch(e){}
+ try{gl.getTexParameter(gl.TEXTURE_3D,gl.TEXTURE_MIN_LOD)}catch(e){}
+ try{gl.getAttribLocation(program,HFPJPHsb,BqFFaNXT,vColor)}catch(e){}
+ try{gl.readPixels(2,65535,32766,64,gl.RGBA,gl.UNSIGNED_SHORT_4_4_4_4,array_buffer)}catch(e){}
+ try{gl.uniform1i(positionAttributeLocation,100000)}catch(e){}
+ try{gl.deleteProgram(HFPJPHsb)}catch(e){}
+ try{gl.activeTexture(gl.TEXTURE8)}catch(e){}
+ try{gl.generateMipmap(gl.TEXTURE_CUBE_MAP)}catch(e){}
+ try{gl.framebufferTexture2D(gl.DRAW_FRAMEBUFFER,ext.COLOR_ATTACHMENT7_WEBGL,gl.TEXTURE_CUBE_MAP_NEGATIVE_Y,JFbkAWjU,32768)}catch(e){}
+ try{gl.createFramebuffer()}catch(e){}
+ try{gl.isRenderbuffer(TldbZVZy)}catch(e){}
+ try{gl.shaderSource(2147483646,4294967295)}catch(e){}
+ try{gl.uniform1i(positionAttributeLocation,4)}catch(e){}
+ try{gl.getShaderParameter(vshader,fshader,gl.SHADER_TYPE)}catch(e){}
+ try{gl.uniform4f(positionAttributeLocation,0,32,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,128)}catch(e){}
+ try{gl.getShaderParameter(vshader,fshader,gl.COMPILE_STATUS)}catch(e){}
+ try{gl.bindFramebuffer(gl.READ_FRAMEBUFFER,UceAaEik)}catch(e){}
+ try{gl.uniform1iv(positionAttributeLocation,16)}catch(e){}
+ try{gl.uniform1i(positionAttributeLocation,4)}catch(e){}
+ try{gl.blendColor(-0.6465905213160028,0.18655341480038534,-0.9573205951612747,-0.23051900474391296)}catch(e){}
+ try{gl.pixelStorei(gl.PACK_SKIP_ROWS,16)}catch(e){}
+ try{gl.uniform1i(positionAttributeLocation,8)}catch(e){}
+ try{gl.uniformMatrix4fv(program,false,[0.32,0.2,0.2,0.64])}catch(e){}
+ try{gl.compressedTexSubImage2D(0.16,2147483648,0.64,512,4294967295,16384,16384,0.2)}catch(e){}
+ try{gl.uniform3f(positionAttributeLocation,100,65535,128)}catch(e){}
+ try{gl.getParameter(gl.MIN_PROGRAM_TEXEL_OFFSET)}catch(e){}
+ try{gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,256)}catch(e){}
+ try{gl.vertexAttrib3fv(0,256)}catch(e){}
+ try{gl.texParameteri(gl.TEXTURE_CUBE_MAP,gl.TEXTURE_MAX_LOD,10000)}catch(e){}
+ try{gl.getAttribLocation(program,HFPJPHsb,BqFFaNXT,a_position)}catch(e){}
+ try{gl.bufferData(gl.UNIFORM_BUFFER,ggJMUVjW,gl.DYNAMIC_DRAW)}catch(e){}
+ try{gl.getShaderInfoLog(vshader,fshader)}catch(e){}
+ try{gl.deleteProgram(program)}catch(e){}
+ try{gl.getRenderbufferParameter(gl.RENDERBUFFER,gl.RGB565)}catch(e){}
+ try{gl.deleteTexture(UktOmYJK)}catch(e){}
+ try{gl.texParameteri(gl.TEXTURE_2D_ARRAY,gl.TEXTURE_WRAP_S,30000)}catch(e){}
+ try{gl.compressedTexImage2D(gl.TEXTURE_CUBE_MAP_POSITIVE_Y,2,ext.COMPRESSED_RGB_ETC1_WEBGL,16,64,16,null)}catch(e){}
+ try{gl.getError()}catch(e){}
+ try{gl.getShaderParameter(vshader,fshader,gl.COMPILE_STATUS)}catch(e){}
+ try{gl.getUniform(HFPJPHsb,positionAttributeLocation)}catch(e){}
+ try{gl.uniform3f(positionAttributeLocation,0,100000,10000)}catch(e){}
+ try{gl.finish()}catch(e){}
+ try{gl.enable(gl.POLYGON_OFFSET_FILL)}catch(e){}
+ try{gl.uniform4f(positionAttributeLocation,65535,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,100,2)}catch(e){}
+ try{gl.uniform4fv(positionAttributeLocation,1000)}catch(e){}
+ try{gl.getError()}catch(e){}
+ try{gl.bindFramebuffer(gl.DRAW_FRAMEBUFFER,GrIvQwGR)}catch(e){}
+ try{gl.hint(ext.FRAGMENT_SHADER_DERIVATIVE_HINT_OES,gl.DONT_CARE)}catch(e){}
+ try{gl.getShaderInfoLog(vshader,fshader)}catch(e){}
+ try{gl.linkProgram(BqFFaNXT)}catch(e){}
+ try{gl.generateMipmap(gl.TEXTURE_3D)}catch(e){}
+ try{gl.blendColor(-0.18265548561791034,-0.8125874685056809,-0.0553196431968388,-0.25267991592505834)}catch(e){}
+ try{gl.isBuffer(ztSCBDGU)}catch(e){}
+ try{gl.getAttribLocation(program,HFPJPHsb,BqFFaNXT,vColor)}catch(e){}
+ try{gl.bindFramebuffer(gl.READ_FRAMEBUFFER,LmNkgZVU)}catch(e){}
+ try{gl.finish()}catch(e){}
+ try{gl.clearDepth(0.3131004682221896)}catch(e){}
+ try{gl.vertexAttrib4f(65534,256,256,32766)}catch(e){}
+ try{gl.activeTexture(gl.TEXTURE2)}catch(e){}
+ try{gl.texParameteri(gl.TEXTURE_2D_ARRAY,gl.TEXTURE_COMPARE_MODE,255)}catch(e){}
+ try{gl.bindFramebuffer(gl.READ_FRAMEBUFFER,LmNkgZVU)}catch(e){}
+ try{gl.getTexParameter(gl.TEXTURE_3D,gl.TEXTURE_MIN_LOD)}catch(e){}
+ try{gl.getTexParameter(gl.TEXTURE_CUBE_MAP,gl.TEXTURE_MIN_LOD)}catch(e){}
+ try{gl.vertexAttrib1f(255,2)}catch(e){}
+ try{gl.createTexture()}catch(e){}
+ try{gl.stencilOp(gl.INCR,gl.ZERO,gl.INVERT)}catch(e){}
+ try{gl.uniform2f(positionAttributeLocation,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,2)}catch(e){}
+ try{gl.uniform4fv(positionAttributeLocation,32768)}catch(e){}
+ try{gl.hint(gl.GENERATE_MIPMAP_HINT,gl.FASTEST)}catch(e){}
+ try{gl.uniform2f(positionAttributeLocation,256,0)}catch(e){}
+ try{gl.blendEquationSeparate(gl.FUNC_REVERSE_SUBTRACT,gl.MIN)}catch(e){}
+ try{gl.vertexAttrib1f(2,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119)}catch(e){}
+ try{gl.detachShader(HFPJPHsb,vshader)}catch(e){}
+ try{gl.deleteFramebuffer()}catch(e){}
+ try{gl.depthFunc(gl.EQUAL)}catch(e){}
+ try{gl.createTexture()}catch(e){}
+ try{gl.uniform4f(positionAttributeLocation,4,0,4,100)}catch(e){}
+ try{gl.stencilFunc(gl.NOTEQUAL,255,32)}catch(e){}
+ try{gl.blendColor(0,-0.04254005515694037,0.3615838797354616,-43041.66915091171156491913303)}catch(e){}
+ try{gl.getError()}catch(e){}
+ try{gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL,0)}catch(e){}
+ try{gl.getUniform(program,positionAttributeLocation)}catch(e){}
+ try{gl.getUniform(HFPJPHsb,positionAttributeLocation)}catch(e){}
+ try{gl.deleteFramebuffer()}catch(e){}
+ try{gl.blendColor(0.2712724221764804,-0.23642228633229134,1.7075605856853469,0.9366518084791364)}catch(e){}
+ try{gl.isTexture(null)}catch(e){}
+ try{gl.uniform3iv(positionAttributeLocation,10000)}catch(e){}
+ try{gl.getAttribLocation(program,HFPJPHsb,BqFFaNXT,color)}catch(e){}
+ try{gl.polygonOffset(512,512)}catch(e){}
+ try{gl.createFramebuffer()}catch(e){}
+ try{gl.hint(gl.GENERATE_MIPMAP_HINT,gl.DONT_CARE)}catch(e){}
+ try{gl.enable(gl.DEPTH_TEST)}catch(e){}
+ try{gl.uniform3i(positionAttributeLocation,0,100000,32767)}catch(e){}
+ try{gl.isRenderbuffer(tiZrTxYb)}catch(e){}
+//================batas nya dari sini(1)===================
+try{gl.drawArraysInstanced(gl.TRIANGLE_FAN,256,2,128,0)}catch(e){}
+ try{gl.bindVertexArray(ADOwgZYR)}catch(e){}
+ try{gl.vertexAttribI4i(2,256,0,128,128)}catch(e){}
+ try{gl.getIndexedParameter(0.32,0.4)}catch(e){}
+ try{gl.vertexAttribI4ui(4294967295,0.2,0.8,16384,4294967294)}catch(e){}
+ try{gl.texImage3D(gl.TEXTURE_2D_ARRAY,64,gl.RGB8,4,128,32,128,gl.RGB8,gl.UNSIGNED_INT_24_8,fEgKssOz)}catch(e){}
+ try{gl.texSubImage3D(gl.TEXTURE_3D,8,8,4,0,8,4,gl.LUMINANCE_ALPHA,gl.UNSIGNED_INT_2_10_10_10_REV,ffRJTBvF)}catch(e){}
+ try{gl.clearBufferiv(1,64,0.8,0)}catch(e){}
+ try{gl.getInternalformatParameter(2147483646,2,65534)}catch(e){}
+ try{gl.createSampler()}catch(e){}
+ try{gl.drawRangeElements(gl.POINTS,8,16,2,gl.UNSIGNED_BYTE,16)}catch(e){}
+ try{gl.texImage3D(gl.TEXTURE_3D,8,gl.RGB5_A1,512,512,0,4,gl.RGB5_A1,gl.SHORT,EIfNPHaI)}catch(e){}
+ try{gl.isSampler(65534)}catch(e){}
+ try{gl.clearBufferfi(128,2147483647,2147483646,32766)}catch(e){}
+ try{gl.isSampler(2147483648)}catch(e){}
+ try{gl.vertexAttribI4uiv(4294967294,512)}catch(e){}
+ try{gl.getUniformIndices(0.2,0.16)}catch(e){}
+ try{gl.deleteTransformFeedback()}catch(e){}
+ try{gl.uniformMatrix2x4fv(program,false,[0.32,0.32,0.2,0.8])}catch(e){}
+ try{gl.vertexAttribI4uiv(2147483648,4291051535)}catch(e){}
+ try{gl.texImage3D(gl.TEXTURE_3D,8,gl.RGBA8,32,16,8,0,gl.RGBA8,gl.SHORT,array_buffer)}catch(e){}
+ try{gl.isSampler(0.32)}catch(e){}
+ try{gl.fenceSync(0.8,32767)}catch(e){}
+ try{gl.blitFramebuffer(256,2,64,8,16,64,64,0,gl.STENCIL_BUFFER_BIT,gl.LINEAR)}catch(e){}
+ try{gl.uniform3ui(4294967294,0.4,4294967294,2)}catch(e){}
+ try{gl.bindVertexArray(LPdFdxFp)}catch(e){}
+ try{gl.deleteTransformFeedback()}catch(e){}
+ try{gl.texStorage2D(gl.TEXTURE_2D_ARRAY,2,gl.RGBA4,8,2)}catch(e){}
+ try{gl.createSampler()}catch(e){}
+ try{gl.compressedTexImage3D(gl.TEXTURE_2D_ARRAY,16,ext.COMPRESSED_SRGB8_ALPHA8_ASTC_5x4_KHR,64,512,128,null)}catch(e){}
+ try{gl.getUniformIndices(16,2147483646)}catch(e){}
+ try{gl.beginQuery(gl.TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN,)}catch(e){}
+ try{gl.createVertexArray()}catch(e){}
+ try{gl.texImage3D(gl.TEXTURE_3D,32,gl.RGBA32F,8,16,0,512,gl.RGBA32F,gl.HALF_FLOAT,EIfNPHaI)}catch(e){}
+ try{gl.compressedTexSubImage3D(gl.TEXTURE_2D_ARRAY,4,2,4,2,4,2,128,gl.COMPRESSED_RGB8_PUNCHTHROUGH_ALPHA1_ETC2,2,JFbkAWjU)}catch(e){}
+ try{gl.createVertexArray()}catch(e){}
+ try{gl.compressedTexSubImage3D(gl.TEXTURE_2D_ARRAY,16,128,2,128,32,4,0,gl.COMPRESSED_RGB8_PUNCHTHROUGH_ALPHA1_ETC2,32,null)}catch(e){}
+ try{gl.compressedTexImage3D(gl.TEXTURE_3D,0,ext.COMPRESSED_RGBA_ASTC_10x10_KHR,64,64,16,nLpbWhiO)}catch(e){}
+ try{gl.uniformMatrix4x2fv(BqFFaNXT,true,[0.64,0.16,0.8,0.64])}catch(e){}
+ try{gl.drawElementsInstanced(gl.LINE_STRIP,0,gl.UNSIGNED_INT,8,128)}catch(e){}
+ try{gl.bindBufferBase(gl.UNIFORM_BUFFER,2,IxDlvdFr)}catch(e){}
+ try{gl.getActiveUniforms(8192,4294967294,32768)}catch(e){}
+ try{gl.transformFeedbackVaryings(2,0.2,0.8)}catch(e){}
+ try{gl.vertexAttribI4ui(0.2,8192,512,64,65534)}catch(e){}
+ try{gl.transformFeedbackVaryings(0.2,8,0.2)}catch(e){}
+ try{gl.isSync(16384)}catch(e){}
+ try{gl.drawRangeElements(gl.LINE_STRIP,4,32,4,gl.UNSIGNED_INT,32)}catch(e){}
+ try{gl.clearBufferiv(4294967295,0,4294967295,2)}catch(e){}
+ try{gl.compressedTexImage3D(gl.TEXTURE_2D_ARRAY,256,ext.COMPRESSED_RGBA_ASTC_12x10_KHR,8,16,64,null)}catch(e){}
+ try{gl.vertexAttribI4i(8,0,16,2,32)}catch(e){}
+ try{gl.uniformMatrix2x4fv(HFPJPHsb,false,[0.2,0.2,0.64,0.32])}catch(e){}
+ try{gl.fenceSync(16384,4291051535)}catch(e){}
+ try{gl.compressedTexImage3D(gl.TEXTURE_2D_ARRAY,8,ext.COMPRESSED_RGB_BPTC_SIGNED_FLOAT_EXT,256,512,32,JFbkAWjU)}catch(e){}
+ try{gl.bindBufferRange(gl.ARRAY_BUFFER,4,positionBuffer,16,64)}catch(e){}
+ try{gl.texImage3D(gl.TEXTURE_3D,8,gl.RGBA8,64,128,32,2,gl.RGBA8,gl.INT,array_buffer)}catch(e){}
+ try{gl.isSampler(32767)}catch(e){}
+ try{gl.compressedTexImage3D(gl.TEXTURE_3D,8,ext.COMPRESSED_SIGNED_RED_RGTC1_EXT,256,2,512,dOsMvhzx)}catch(e){}
+ try{gl.createSampler()}catch(e){}
+ try{gl.compressedTexSubImage3D(gl.TEXTURE_3D,64,256,256,256,0,4,64,gl.COMPRESSED_RGB8_ETC2,16,null)}catch(e){}
+ try{gl.samplerParameteri(KbRAJaCZ,null,WZbPJRZF,null,HSIVIldG,null,MSAclNqH,null,VhUXHLVx,null,ZjRQGsJO,null,jgRQlHNP,null,MdMleqFs,null,SZSrdbZt,null,XlLIRHxo,null,gl.BUFFER_SIZE,gl.LINEAR_MIPMAP_NEAREST)}catch(e){}
+ try{gl.createTransformFeedback()}catch(e){}
+ try{gl.drawArraysInstanced(gl.LINES,256,2,4,64)}catch(e){}
+ try{gl.getInternalformatParameter(65534,32766,2147483648)}catch(e){}
+ try{gl.uniformMatrix4x2fv(HFPJPHsb,false,[0.64,0.8,0.64,0.64])}catch(e){}
+ try{gl.waitSync(ORYFvKpT,lZDLzeGq,GuTWnGap,hxTEkrww,PyofXzRb,JoQKcahG,NrYHLFxM,wkDzMGvy,iGCsCsFA,EHXkSXgR,512,gl.TIMEOUT_IGNORED)}catch(e){}
+ try{gl.clearBufferfi(128,128,0,16384)}catch(e){}
+ try{gl.getSyncParameter(65535,4294967294)}catch(e){}
+ try{gl.uniform2ui(2147483646,65534,65534)}catch(e){}
+ try{gl.framebufferTextureLayer(gl.READ_FRAMEBUFFER,gl.COLOR_ATTACHMENT5,eTAtbhto,null,YfhUidvy,null,UktOmYJK,null,dOsMvhzx,null,nLpbWhiO,null,YZWqwIYQ,null,JFbkAWjU,null,jXnfHkAi,null,DwPfWZgj,null,bZbAHyxB,null,16,0)}catch(e){}
+ try{gl.copyTexSubImage3D(gl.TEXTURE_3D,256,16,8,32,512,16,16,512)}catch(e){}
+ try{gl.compressedTexImage3D(gl.TEXTURE_2D_ARRAY,256,ext.COMPRESSED_SRGB8_ETC2,512,128,2,nLpbWhiO)}catch(e){}
+ try{gl.compressedTexImage3D(gl.TEXTURE_3D,0,ext.COMPRESSED_RGB8_PUNCHTHROUGH_ALPHA1_ETC2,16,0,2,null)}catch(e){}
+ try{gl.texImage3D(gl.TEXTURE_3D,4,gl.RGB8,2,0,32,4,gl.RGB8,gl.UNSIGNED_INT_10F_11F_11F_REV,BcSErLXo)}catch(e){}
+ try{gl.getActiveUniformBlockParameter(2147483646,32766,0.2)}catch(e){}
+ try{gl.clearBufferfi(128,0.2,0,1)}catch(e){}
+ try{gl.bindBufferBase(gl.TRANSFORM_FEEDBACK_BUFFER,0,YJrlafsE)}catch(e){}
+ try{gl.compressedTexImage3D(gl.TEXTURE_2D_ARRAY,16,ext.COMPRESSED_RGBA_ASTC_12x10_KHR,256,4,128,jXnfHkAi)}catch(e){}
+ try{gl.compressedTexImage3D(gl.TEXTURE_2D_ARRAY,512,ext.COMPRESSED_SRGB8_ALPHA8_ASTC_10x5_KHR,256,512,0,null)}catch(e){}
+ try{gl.invalidateSubFramebuffer(gl.READ_FRAMEBUFFER,gl.COLOR_ATTACHMENT8,512,512,4,32)}catch(e){}
+ try{gl.texStorage3D(gl.TEXTURE_3D,512,gl.R32I,2,128,128)}catch(e){}
+ try{gl.deleteVertexArray(VzsyIXjR)}catch(e){}
+ try{gl.copyTexSubImage3D(gl.TEXTURE_3D,16,2,512,128,0,128,8,2)}catch(e){}
+ try{gl.uniformMatrix3x4fv(BqFFaNXT,true,[0.64,0.16,0.64,0.8])}catch(e){}
+ try{gl.texSubImage3D(gl.TEXTURE_3D,4,4,16,256,16,512,gl.RGB9_E5,gl.INT,hgYnVnVW)}catch(e){}
+ try{gl.texStorage3D(gl.TEXTURE_2D_ARRAY,32,gl.R11F_G11F_B10F,128,256,32)}catch(e){}
+ try{gl.clearBufferfi(0,4294967294,32768,0.4)}catch(e){}
+ try{gl.deleteVertexArray(LPdFdxFp)}catch(e){}
+ try{gl.bindVertexArray(ADOwgZYR)}catch(e){}
+ try{gl.drawArraysInstanced(gl.POINTS,2,32,256,8)}catch(e){}
+ try{gl.createVertexArray()}catch(e){}
+ try{gl.getUniformIndices(32766,2147483648)}catch(e){}
+ try{gl.compressedTexImage3D(gl.TEXTURE_3D,4,ext.COMPRESSED_RGBA_ASTC_5x4_KHR,8,128,0,JFbkAWjU)}catch(e){}
+ try{gl.texStorage3D(gl.TEXTURE_2D_ARRAY,4,gl.COMPRESSED_RGB8_PUNCHTHROUGH_ALPHA1_ETC2,2,32,8)}catch(e){}
+ try{gl.bindBufferBase(gl.UNIFORM_BUFFER,4,mWBNccDY)}catch(e){}
+ try{gl.isSampler(4)}catch(e){}
+ try{gl.getUniformIndices(255,8)}catch(e){}
+ try{gl.transformFeedbackVaryings(255,4294967294,0.16)}catch(e){}
+ try{gl.getActiveUniforms(0,128,1)}catch(e){}
+ try{gl.deleteQuery()}catch(e){}
+ try{gl.getUniformIndices(32768,2)}catch(e){}
+ try{gl.vertexAttribI4i(512,256,8,256,512)}catch(e){}
+ try{gl.isSampler(2147483647)}catch(e){}
+ try{gl.clearBufferfi(0.16,0.8,1,512)}catch(e){}
+ try{gl.getIndexedParameter(32768,2147483647)}catch(e){}
+ try{gl.drawArraysInstanced(gl.TRIANGLE_FAN,4,16,32,128)}catch(e){}
+ try{gl.bindBufferBase(gl.UNIFORM_BUFFER,512,mWBNccDY)}catch(e){}
+ try{gl.vertexAttribI4uiv(1,4294967295)}catch(e){}
+ try{gl.clearBufferiv(0.64,0.32,0.16,128)}catch(e){}
+ try{gl.createQuery()}catch(e){}
+ try{gl.clearBufferiv(4,4,32767,255)}catch(e){}
+ try{gl.transformFeedbackVaryings(4,2147483646,8192)}catch(e){}
+ try{gl.vertexAttribI4uiv(2147483646,32768)}catch(e){}
+ try{gl.getActiveUniformBlockName(0.8,0.2)}catch(e){}
+ try{gl.drawRangeElements(gl.LINE_LOOP,256,0,16,gl.UNSIGNED_SHORT,32)}catch(e){}
+ try{gl.createQuery()}catch(e){}
+ try{gl.bindBufferBase(gl.UNIFORM_BUFFER,64,LmNkgZVU)}catch(e){}
+ try{gl.uniform4uiv(2,16384,2,16)}catch(e){}
+ try{gl.texImage3D(gl.TEXTURE_2D_ARRAY,128,gl.RGBA8,8,128,256,64,gl.RGBA8,gl.UNSIGNED_SHORT_5_6_5,ggJMUVjW)}catch(e){}
+ try{gl.drawRangeElements(gl.TRIANGLE_FAN,0,64,64,gl.UNSIGNED_INT,0)}catch(e){}
+ try{gl.drawArraysInstanced(gl.TRIANGLES,32,0,0,16)}catch(e){}
+ try{gl.deleteVertexArray(VzsyIXjR)}catch(e){}
+ try{gl.isSampler(0.64)}catch(e){}
+ try{gl.texImage3D(gl.TEXTURE_3D,32,gl.RGBA16F,0,32,512,64,gl.RGBA16F,gl.HALF_FLOAT,bxCgGGoc)}catch(e){}
+ try{gl.vertexAttribI4ui(128,65534,4294967294,0,0.16)}catch(e){}
+ try{gl.texSubImage3D(gl.TEXTURE_3D,128,2,512,0,0,32,gl.SRGB8,gl.UNSIGNED_SHORT_5_6_5,BcSErLXo)}catch(e){}
+ try{gl.bindBufferRange(gl.UNIFORM_BUFFER,8,IxDlvdFr,256,2)}catch(e){}
+ try{gl.bindBufferBase(gl.TRANSFORM_FEEDBACK_BUFFER,16,vDeohEZo)}catch(e){}
+ try{gl.compressedTexSubImage3D(gl.TEXTURE_3D,8,64,128,512,2,0,16,gl.COMPRESSED_RGB8_PUNCHTHROUGH_ALPHA1_ETC2,32,jXnfHkAi)}catch(e){}
+ try{gl.isSampler(2147483647)}catch(e){}
+ try{gl.drawArraysInstanced(gl.LINES,16,8,32,2)}catch(e){}
+ try{gl.bindBufferBase(gl.UNIFORM_BUFFER,64,BDyuPEoR)}catch(e){}
+ try{gl.invalidateSubFramebuffer(gl.FRAMEBUFFER,ext.COLOR_ATTACHMENT3_WEBGL,2,64,256,64)}catch(e){}
+ try{gl.clientWaitSync(ORYFvKpT,lZDLzeGq,GuTWnGap,hxTEkrww,PyofXzRb,JoQKcahG,NrYHLFxM,wkDzMGvy,iGCsCsFA,EHXkSXgR,64,512)}catch(e){}
+ try{gl.waitSync(ORYFvKpT,lZDLzeGq,GuTWnGap,hxTEkrww,PyofXzRb,JoQKcahG,NrYHLFxM,wkDzMGvy,iGCsCsFA,EHXkSXgR,128,gl.TIMEOUT_IGNORED)}catch(e){}
+ try{gl.clearBufferfi(2147483647,0.4,0.2,65534)}catch(e){}
+ try{gl.deleteTransformFeedback()}catch(e){}
+ try{gl.createSampler()}catch(e){}
+ try{gl.uniform3ui(0.2,65534,256,2147483647)}catch(e){}
+ try{gl.blitFramebuffer(512,4,128,0,4,32,16,128,gl.STENCIL_BUFFER_BIT,gl.LINEAR)}catch(e){}
+ try{gl.getActiveUniformBlockParameter(2147483646,4294967294,4291051535)}catch(e){}
+ try{gl.isSampler(256)}catch(e){}
+ try{gl.drawRangeElements(gl.TRIANGLES,8,512,512,gl.UNSIGNED_BYTE,0)}catch(e){}
+ try{gl.getUniformIndices(4294967294,2147483648)}catch(e){}
+ try{gl.getInternalformatParameter(2147483647,32766,32766)}catch(e){}
+ try{gl.texImage3D(gl.TEXTURE_2D_ARRAY,8,gl.RGB565,4,512,256,4,gl.RGB565,gl.SHORT,bxCgGGoc)}catch(e){}
+ try{gl.createQuery()}catch(e){}
+ try{gl.bindBufferRange(gl.ARRAY_BUFFER,32,vDeohEZo,2,4)}catch(e){}
+ try{gl.uniformMatrix4x2fv(program,true,[0.16,0.2,0.16,0.32])}catch(e){}
+ try{gl.uniformMatrix4x2fv(BqFFaNXT,false,[0.16,0.2,0.4,0.2])}catch(e){}
+ try{gl.uniform4uiv(2147483648,2147483646,0.2,64)}catch(e){}
+ try{gl.invalidateSubFramebuffer(gl.FRAMEBUFFER,ext.COLOR_ATTACHMENT5_WEBGL,16,4,4,64)}catch(e){}
+ try{gl.samplerParameteri(KbRAJaCZ,null,WZbPJRZF,null,HSIVIldG,null,MSAclNqH,null,VhUXHLVx,null,ZjRQGsJO,null,jgRQlHNP,null,MdMleqFs,null,SZSrdbZt,null,XlLIRHxo,null,gl.BUFFER_USAGE,gl.LINEAR)}catch(e){}
+ try{gl.getActiveUniformBlockName(0.8,2147483647)}catch(e){}
+ try{gl.getActiveUniformBlockName(65534,2147483646)}catch(e){}
+ try{gl.texSubImage3D(gl.TEXTURE_3D,512,4,4,64,8,4,gl.RGB,gl.UNSIGNED_BYTE,gUJMmfWw)}catch(e){}
+ try{gl.isSync(0)}catch(e){}
+//================batas nya dari sini(2)===================
+try{gl.createRenderbuffer()}catch(e){}
+ try{gl.getProgramParameter(program,gl.TRANSFORM_FEEDBACK_BUFFER_MODE)}catch(e){}
+ try{gl.vertexAttrib2fv(119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,32767)}catch(e){}
+ try{gl.uniform2fv(positionAttributeLocation,100)}catch(e){}
+ try{gl.vertexAttrib1fv(128,65535)}catch(e){}
+ try{gl.flush()}catch(e){}
+ try{gl.getShaderInfoLog(vshader,fshader)}catch(e){}
+ try{gl.stencilMask(255)}catch(e){}
+ try{gl.copyTexSubImage2D(gl.TEXTURE_CUBE_MAP_POSITIVE_Y,128,65535,0,64,0,0,32768)}catch(e){}
+ try{gl.deleteFramebuffer()}catch(e){}
+ try{gl.texParameterf(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,5711.19182069230825860214073)}catch(e){}
+ try{gl.vertexAttrib3fv(8,256)}catch(e){}
+ try{gl.compressedTexSubImage2D(255,2147483647,0.2,8192,2,0.32,512,0.8)}catch(e){}
+ try{gl.depthRange(0.9255479244980596,-0.8312592027913759)}catch(e){}
+ try{gl.getProgramInfoLog(HFPJPHsb)}catch(e){}
+ try{gl.createShader(gl.FRAGMENT_SHADER)}catch(e){}
+ try{gl.uniform4f(positionAttributeLocation,10000,65534,256,100000)}catch(e){}
+ try{gl.createRenderbuffer()}catch(e){}
+ try{gl.createShader(gl.VERTEX_SHADER)}catch(e){}
+ try{gl.uniform1f(positionAttributeLocation,32766)}catch(e){}
+ try{gl.bindAttribLocation(BqFFaNXT,65534,vColor)}catch(e){}
+ try{gl.vertexAttrib4fv(64,100)}catch(e){}
+ try{gl.colorMask(true,true,true,false)}catch(e){}
+ try{gl.getProgramInfoLog(program)}catch(e){}
+ try{gl.getVertexAttribOffset(0,gl.VERTEX_ATTRIB_ARRAY_POINTER)}catch(e){}
+ try{gl.uniform1f(positionAttributeLocation,0)}catch(e){}
+ try{gl.getBufferParameter(gl.UNIFORM_BUFFER,gl.STATIC_DRAW)}catch(e){}
+ try{gl.vertexAttrib1fv(32,0)}catch(e){}
+ try{gl.vertexAttrib3f(64,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,64,64)}catch(e){}
+ try{gl.uniform1fv(positionAttributeLocation,0)}catch(e){}
+ try{gl.stencilMask(4)}catch(e){}
+ try{gl.vertexAttrib3f(128,128,128,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119)}catch(e){}
+ try{gl.createFramebuffer()}catch(e){}
+ try{gl.vertexAttrib3fv(119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,100000)}catch(e){}
+ try{gl.uniform1iv(positionAttributeLocation,0)}catch(e){}
+ try{gl.compileShader(0.16)}catch(e){}
+ try{gl.validateProgram(HFPJPHsb)}catch(e){}
+ try{gl.getBufferParameter(gl.ELEMENT_ARRAY_BUFFER,gl.STATIC_DRAW)}catch(e){}
+ try{gl.getBufferParameter(gl.ELEMENT_ARRAY_BUFFER,gl.STREAM_DRAW)}catch(e){}
+ try{gl.vertexAttrib1fv(32766,3000)}catch(e){}
+ try{gl.linkProgram(BqFFaNXT)}catch(e){}
+ try{gl.bufferData(gl.ARRAY_BUFFER,MGCUUNyY,gl.STATIC_DRAW)}catch(e){}
+ try{gl.uniform4f(positionAttributeLocation,65535,65535,30000,0)}catch(e){}
+ try{gl.compileShader(0.16)}catch(e){}
+ try{gl.getAttribLocation(program,HFPJPHsb,BqFFaNXT,color)}catch(e){}
+ try{gl.texSubImage2D(1,4291051535,2147483648,0.8,2147483648,0.4,0.2)}catch(e){}
+ try{gl.getProgramInfoLog(program)}catch(e){}
+ try{gl.getProgramInfoLog(BqFFaNXT)}catch(e){}
+ try{gl.activeTexture(gl.TEXTURE35)}catch(e){}
+ try{gl.copyTexSubImage2D(gl.TEXTURE_CUBE_MAP_POSITIVE_Z,30000,32768,256,0,512,32767,16)}catch(e){}
+ try{gl.uniform4iv(positionAttributeLocation,3000)}catch(e){}
+ try{gl.getAttribLocation(program,HFPJPHsb,BqFFaNXT,a_position)}catch(e){}
+ try{gl.bufferData(gl.UNIFORM_BUFFER,gUJMmfWw,gl.BUFFER_USAGE)}catch(e){}
+ try{gl.vertexAttrib3fv(4,10000)}catch(e){}
+ try{gl.uniform1f(positionAttributeLocation,128)}catch(e){}
+ try{gl.uniform1fv(positionAttributeLocation,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119)}catch(e){}
+ try{gl.createRenderbuffer()}catch(e){}
+ try{gl.getRenderbufferParameter(gl.RENDERBUFFER,gl.DEPTH_COMPONENT16)}catch(e){}
+ try{gl.isProgram(program)}catch(e){}
+ try{gl.uniform1f(positionAttributeLocation,65534)}catch(e){}
+ try{gl.compressedTexSubImage2D(4294967294,65535,0,32767,0.2,0.64,2147483646,32767)}catch(e){}
+ try{gl.uniform2fv(positionAttributeLocation,32768)}catch(e){}
+ try{gl.colorMask(false,false,false,false)}catch(e){}
+ try{gl.checkFramebufferStatus(gl.READ_FRAMEBUFFER)}catch(e){}
+ try{gl.compressedTexSubImage2D(16,0,32766,2,256,32767,32766,16384)}catch(e){}
+ try{gl.vertexAttrib2fv(100,64)}catch(e){}
+ try{gl.uniform4i(positionAttributeLocation,128,100000,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,8)}catch(e){}
+ try{gl.stencilFuncSeparate(gl.FRONT_AND_BACK,gl.LESS,65534,128)}catch(e){}
+ try{gl.bufferData(gl.ARRAY_BUFFER,hgYnVnVW,gl.DYNAMIC_READ)}catch(e){}
+ try{gl.vertexAttrib2fv(119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,3000)}catch(e){}
+ try{gl.linkProgram(HFPJPHsb)}catch(e){}
+ try{gl.uniform1fv(positionAttributeLocation,128)}catch(e){}
+ try{gl.bufferData(gl.UNIFORM_BUFFER,MGCUUNyY,gl.DYNAMIC_COPY)}catch(e){}
+ try{gl.getProgramInfoLog(program)}catch(e){}
+ try{gl.attachShader(8192,8192)}catch(e){}
+ try{gl.compileShader(4)}catch(e){}
+ try{gl.drawElements(gl.TRIANGLE_STRIP,30000,gl.UNSIGNED_SHORT,4)}catch(e){}
+ try{gl.getProgramParameter(HFPJPHsb,gl.TRANSFORM_FEEDBACK_BUFFER_MODE)}catch(e){}
+ try{gl.vertexAttrib4fv(65534,32767)}catch(e){}
+ try{gl.uniform1fv(positionAttributeLocation,2)}catch(e){}
+ try{gl.getFramebufferAttachmentParameter(gl.DRAW_FRAMEBUFFER,gl.COLOR_ATTACHMENT9,gl.FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING)}catch(e){}
+ try{gl.compileShader(64)}catch(e){}
+ try{gl.compileShader(32768)}catch(e){}
+ try{gl.disable(gl.DEPTH_TEST)}catch(e){}
+ try{gl.uniform4i(positionAttributeLocation,0,0,32,16)}catch(e){}
+ try{gl.uniform3fv(positionAttributeLocation,65534)}catch(e){}
+ try{gl.framebufferRenderbuffer(gl.READ_FRAMEBUFFER,ext.COLOR_ATTACHMENT14_WEBGL,gl.RENDERBUFFER,TMMRtWXz)}catch(e){}
+ try{gl.bufferData(gl.ARRAY_BUFFER,hgYnVnVW,gl.DYNAMIC_COPY)}catch(e){}
+ try{gl.compressedTexSubImage2D(0.8,8192,16384,512,0,2147483646,65535,2147483647)}catch(e){}
+ try{gl.texImage2D(512,0.4,32768,0.64,0.8,0.8)}catch(e){}
+ try{gl.copyTexSubImage2D(gl.TEXTURE_CUBE_MAP_NEGATIVE_X,0,32767,0,32,65535,64,64)}catch(e){}
+ try{gl.texImage2D(2147483648,512,0.64,2147483648,0,128)}catch(e){}
+ try{gl.linkProgram(program)}catch(e){}
+ try{gl.compileShader(0.16)}catch(e){}
+ try{gl.validateProgram(HFPJPHsb)}catch(e){}
+ try{gl.getParameter(ext.COMPRESSED_SRGB8_ALPHA8_ASTC_12x10_KHR)}catch(e){}
+ try{gl.compressedTexImage2D(gl.TEXTURE_CUBE_MAP_POSITIVE_Y,2,ext.COMPRESSED_RG11_EAC,64,0,512,DwPfWZgj)}catch(e){}
+ try{gl.vertexAttrib3f(10000,2,100000,256)}catch(e){}
+ try{gl.deleteFramebuffer()}catch(e){}
+ try{gl.uniform2fv(positionAttributeLocation,32767)}catch(e){}
+ try{gl.texParameterf(gl.TEXTURE_CUBE_MAP,gl.TEXTURE_COMPARE_FUNC,0.8381678448446492)}catch(e){}
+ try{gl.vertexAttrib3f(30000,512,65535,0)}catch(e){}
+ try{gl.framebufferTexture2D(gl.DRAW_FRAMEBUFFER,gl.COLOR_ATTACHMENT13,gl.TEXTURE_CUBE_MAP_POSITIVE_X,null,64)}catch(e){}
+ try{gl.createRenderbuffer()}catch(e){}
+ try{gl.getProgramInfoLog(HFPJPHsb)}catch(e){}
+ try{gl.getAttribLocation(program,HFPJPHsb,BqFFaNXT,color)}catch(e){}
+ try{gl.isProgram(HFPJPHsb)}catch(e){}
+ try{gl.colorMask(false,true,false,false)}catch(e){}
+ try{gl.framebufferRenderbuffer(gl.READ_FRAMEBUFFER,gl.COLOR_ATTACHMENT4,gl.RENDERBUFFER,FSzblpQX)}catch(e){}
+ try{gl.framebufferRenderbuffer(gl.DRAW_FRAMEBUFFER,gl.COLOR_ATTACHMENT2,gl.RENDERBUFFER,BjRFaeDV)}catch(e){}
+ try{gl.drawElements(gl.LINE_LOOP,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,gl.UNSIGNED_BYTE,32768)}catch(e){}
+ try{gl.vertexAttrib4fv(100,2)}catch(e){}
+ try{gl.vertexAttrib1fv(3000,3000)}catch(e){}
+ try{gl.texParameterf(gl.TEXTURE_CUBE_MAP,gl.TEXTURE_WRAP_S,0.47584028990443117)}catch(e){}
+ try{gl.compressedTexImage2D(gl.TEXTURE_CUBE_MAP_NEGATIVE_Z,128,ext.COMPRESSED_RGBA_ASTC_8x6_KHR,4,4,128,null)}catch(e){}
+ try{gl.linkProgram(program)}catch(e){}
+ try{gl.bindAttribLocation(HFPJPHsb,0,vColor)}catch(e){}
+ try{gl.vertexAttrib4fv(4,16)}catch(e){}
+ try{gl.linkProgram(HFPJPHsb)}catch(e){}
+ try{gl.uniform4iv(positionAttributeLocation,8)}catch(e){}
+ try{gl.scissor(0.32,2147483647,2147483647,512)}catch(e){}
+ try{gl.stencilOp(gl.INCR,gl.DECR,gl.INVERT)}catch(e){}
+ try{gl.uniform3f(positionAttributeLocation,4,0,65534)}catch(e){}
+ try{gl.disable(gl.SAMPLE_ALPHA_TO_COVERAGE)}catch(e){}
+ try{gl.deleteFramebuffer()}catch(e){}
+ try{gl.uniform1f(positionAttributeLocation,2)}catch(e){}
+ try{gl.bufferData(gl.COPY_READ_BUFFER,sbjcMnGm,gl.DYNAMIC_READ)}catch(e){}
+ try{gl.compressedTexSubImage2D(4,8,255,0.4,32766,0.2,0.16,65534)}catch(e){}
+ try{gl.disable(gl.CULL_FACE)}catch(e){}
+ try{gl.getFramebufferAttachmentParameter(gl.READ_FRAMEBUFFER,gl.COLOR_ATTACHMENT1,ext.FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING_EXT)}catch(e){}
+ try{gl.vertexAttrib2fv(512,32767)}catch(e){}
+ try{gl.vertexAttrib3f(10000,128,10000,0)}catch(e){}
+ try{gl.getFramebufferAttachmentParameter(gl.DRAW_FRAMEBUFFER,gl.DEPTH_ATTACHMENT,gl.FRAMEBUFFER_ATTACHMENT_TEXTURE_LAYER)}catch(e){}
+ try{gl.bindFramebuffer(gl.FRAMEBUFFER,QrmhbrOz)}catch(e){}
+ try{gl.bindTexture(gl.TEXTURE_2D,null)}catch(e){}
+ try{gl.compileShader(0.2)}catch(e){}
+ try{gl.bufferData(gl.UNIFORM_BUFFER,BcSErLXo,gl.STREAM_DRAW)}catch(e){}
+ try{gl.clear(gl.STENCIL_BUFFER_BIT)}catch(e){}
+ try{gl.compressedTexSubImage2D(0,4291051535,2147483647,2,65534,0.16,32,0.4)}catch(e){}
+ try{gl.createRenderbuffer()}catch(e){}
+ try{gl.bufferData(gl.TRANSFORM_FEEDBACK_BUFFER,hgYnVnVW,gl.STREAM_COPY)}catch(e){}
+ try{gl.deleteFramebuffer()}catch(e){}
+ try{gl.getProgramParameter(BqFFaNXT,gl.TRANSFORM_FEEDBACK_VARYINGS)}catch(e){}
+ try{gl.flush()}catch(e){}
+ try{gl.drawArrays(gl.LINE_STRIP,65535,255)}catch(e){}
+ try{gl.uniform1f(positionAttributeLocation,65534)}catch(e){}
+ try{gl.stencilMaskSeparate(gl.BACK,30000)}catch(e){}
+ try{gl.getVertexAttribOffset(32,gl.VERTEX_ATTRIB_ARRAY_POINTER)}catch(e){}
+ try{gl.getProgramInfoLog(HFPJPHsb)}catch(e){}
+ try{gl.bindTexture(gl.TEXTURE_2D,null)}catch(e){}
+ try{gl.getFramebufferAttachmentParameter(gl.READ_FRAMEBUFFER,gl.COLOR_ATTACHMENT11,gl.FRAMEBUFFER_ATTACHMENT_RED_SIZE)}catch(e){}
+ try{gl.depthRange(0.42028613024361894,0.8101498828075273)}catch(e){}
+ try{gl.bindTexture(gl.TEXTURE_2D,null)}catch(e){}
+ try{gl.framebufferRenderbuffer(gl.DRAW_FRAMEBUFFER,ext.COLOR_ATTACHMENT12_WEBGL,gl.RENDERBUFFER,WpMYCQAH)}catch(e){}
+ try{gl.getFramebufferAttachmentParameter(gl.READ_FRAMEBUFFER,ext.COLOR_ATTACHMENT4_WEBGL,gl.FRAMEBUFFER_ATTACHMENT_OBJECT_NAME)}catch(e){}
+ try{gl.vertexAttribPointer(255,512,gl.UNSIGNED_SHORT,true,230,32)}catch(e){}
+ try{gl.stencilMask(512)}catch(e){}
+//================batas nya dari sini(1-1)===================
+try{gl.getUniformIndices(8,4)}catch(e){}
+ try{gl.isTransformFeedback(64)}catch(e){}
+ try{gl.texImage3D(gl.TEXTURE_2D_ARRAY,64,gl.RGB5_A1,16,512,128,8,gl.RGB5_A1,gl.UNSIGNED_INT_2_10_10_10_REV,ggJMUVjW)}catch(e){}
+ try{gl.texSubImage3D(gl.TEXTURE_3D,32,2,8,8,0,0,gl.RG8,gl.UNSIGNED_INT_2_10_10_10_REV,sbjcMnGm)}catch(e){}
+ try{gl.texImage3D(gl.TEXTURE_2D_ARRAY,0,gl.RG16F,128,32,128,512,gl.RG16F,gl.UNSIGNED_BYTE,MGCUUNyY)}catch(e){}
+ try{gl.clientWaitSync(ORYFvKpT,lZDLzeGq,GuTWnGap,hxTEkrww,PyofXzRb,JoQKcahG,NrYHLFxM,wkDzMGvy,iGCsCsFA,EHXkSXgR,0,256)}catch(e){}
+ try{gl.vertexAttribDivisor(256,2)}catch(e){}
+ try{gl.samplerParameterf(2147483648,0.32,255)}catch(e){}
+ try{gl.uniform3uiv(4291051535,0.4,32768,2147483646)}catch(e){}
+ try{gl.deleteSync(ORYFvKpT,lZDLzeGq,GuTWnGap,hxTEkrww,PyofXzRb,JoQKcahG,NrYHLFxM,wkDzMGvy,iGCsCsFA,EHXkSXgR)}catch(e){}
+ try{gl.bindBufferBase(gl.UNIFORM_BUFFER,4,UceAaEik)}catch(e){}
+ try{gl.clientWaitSync(ORYFvKpT,lZDLzeGq,GuTWnGap,hxTEkrww,PyofXzRb,JoQKcahG,NrYHLFxM,wkDzMGvy,iGCsCsFA,EHXkSXgR,32,8)}catch(e){}
+ try{gl.getFragDataLocation(8,0.32)}catch(e){}
+ try{gl.deleteQuery()}catch(e){}
+ try{gl.beginTransformFeedback(gl.POINTS)}catch(e){}
+ try{gl.transformFeedbackVaryings(128,0.16,0.16)}catch(e){}
+ try{gl.samplerParameterf(0.32,2147483647,1)}catch(e){}
+ try{gl.getFragDataLocation(4294967295,16)}catch(e){}
+ try{gl.clientWaitSync(ORYFvKpT,lZDLzeGq,GuTWnGap,hxTEkrww,PyofXzRb,JoQKcahG,NrYHLFxM,wkDzMGvy,iGCsCsFA,EHXkSXgR,0,8)}catch(e){}
+ try{gl.clearBufferfv(0.32,8,4294967295,255)}catch(e){}
+ try{gl.getFragDataLocation(8192,4294967295)}catch(e){}
+ try{gl.invalidateSubFramebuffer(gl.DRAW_FRAMEBUFFER,ext.COLOR_ATTACHMENT15_WEBGL,0,16,256,4)}catch(e){}
+ try{gl.getIndexedParameter(0.64,512)}catch(e){}
+ try{gl.getActiveUniformBlockName(512,2147483646)}catch(e){}
+ try{gl.transformFeedbackVaryings(2147483646,0.32,8192)}catch(e){}
+ try{gl.texImage3D(gl.TEXTURE_2D_ARRAY,512,gl.R8UI,128,2,2,8,gl.R8UI,gl.UNSIGNED_SHORT_5_6_5,EIfNPHaI)}catch(e){}
+ try{gl.getIndexedParameter(32,2147483646)}catch(e){}
+ try{gl.getInternalformatParameter(0,32766,0.4)}catch(e){}
+ try{gl.uniformMatrix3x2fv(HFPJPHsb,false,[0.16,0.2,0.2,0.8])}catch(e){}
+ try{gl.getActiveUniformBlockParameter(16,65535,0.32)}catch(e){}
+ try{gl.deleteSampler(KbRAJaCZ,null,WZbPJRZF,null,HSIVIldG,null,MSAclNqH,null,VhUXHLVx,null,ZjRQGsJO,null,jgRQlHNP,null,MdMleqFs,null,SZSrdbZt,null,XlLIRHxo,null)}catch(e){}
+ try{gl.invalidateFramebuffer(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT14)}catch(e){}
+ try{gl.uniform3ui(64,0.8,32,1)}catch(e){}
+ try{gl.getIndexedParameter(0,0.8)}catch(e){}
+ try{gl.uniform4uiv(2,64,255,2147483647)}catch(e){}
+ try{gl.getQuery(4,2)}catch(e){}
+ try{gl.beginTransformFeedback(gl.POINTS)}catch(e){}
+ try{gl.drawRangeElements(gl.LINES,16,64,0,gl.UNSIGNED_SHORT,256)}catch(e){}
+ try{gl.framebufferTextureLayer(gl.FRAMEBUFFER,ext.COLOR_ATTACHMENT3_WEBGL,eTAtbhto,null,YfhUidvy,null,UktOmYJK,null,dOsMvhzx,null,nLpbWhiO,null,YZWqwIYQ,null,JFbkAWjU,null,jXnfHkAi,null,DwPfWZgj,null,bZbAHyxB,null,128,2)}catch(e){}
+ try{gl.uniformMatrix4x3fv(BqFFaNXT,true,[0.16,0.8,0.32,0.4])}catch(e){}
+ try{gl.getFragDataLocation(65534,65534)}catch(e){}
+ try{gl.texSubImage3D(gl.TEXTURE_2D_ARRAY,256,2,64,4,16,0,gl.R8UI,gl.UNSIGNED_INT_5_9_9_9_REV,fEgKssOz)}catch(e){}
+ try{gl.isTransformFeedback(0.32)}catch(e){}
+ try{gl.invalidateSubFramebuffer(gl.DRAW_FRAMEBUFFER,ext.COLOR_ATTACHMENT4_WEBGL,256,512,32,128)}catch(e){}
+ try{gl.getActiveUniformBlockName(65534,2)}catch(e){}
+ try{gl.pauseTransformFeedback()}catch(e){}
+ try{gl.isQuery(16)}catch(e){}
+ try{gl.compressedTexImage3D(gl.TEXTURE_2D_ARRAY,256,ext.COMPRESSED_RGBA_ASTC_6x5_KHR,0,512,512,eTAtbhto)}catch(e){}
+ try{gl.uniform3ui(2147483646,32,0,0.64)}catch(e){}
+ try{gl.getBufferSubData(0.32,8192,32767,0.64,128)}catch(e){}
+ try{gl.vertexAttribI4iv(32766,0.64)}catch(e){}
+ try{gl.deleteSync(ORYFvKpT,lZDLzeGq,GuTWnGap,hxTEkrww,PyofXzRb,JoQKcahG,NrYHLFxM,wkDzMGvy,iGCsCsFA,EHXkSXgR)}catch(e){}
+ try{gl.uniform2uiv(8192,2147483648,2147483648,32766)}catch(e){}
+ try{gl.texSubImage3D(gl.TEXTURE_2D_ARRAY,0,2,512,64,128,8,gl.RGB8UI,gl.UNSIGNED_SHORT_5_5_5_1,sbjcMnGm)}catch(e){}
+ try{gl.pauseTransformFeedback()}catch(e){}
+ try{gl.getBufferSubData(0.8,16384,128,32766,32)}catch(e){}
+ try{gl.texImage3D(gl.TEXTURE_2D_ARRAY,128,gl.R8,0,64,2,32,gl.R8,gl.UNSIGNED_BYTE,array_buffer)}catch(e){}
+ try{gl.drawRangeElements(gl.LINE_STRIP,64,256,64,gl.UNSIGNED_SHORT,64)}catch(e){}
+ try{gl.texSubImage3D(gl.TEXTURE_3D,16,0,64,4,512,16,gl.RGB,gl.HALF_FLOAT,array_buffer)}catch(e){}
+ try{gl.uniformMatrix2x4fv(BqFFaNXT,true,[0.2,0.2,0.64,0.4])}catch(e){}
+ try{gl.uniformMatrix4x2fv(HFPJPHsb,true,[0.8,0.8,0.4,0.32])}catch(e){}
+ try{gl.deleteQuery()}catch(e){}
+ try{gl.uniformMatrix4x3fv(program,true,[0.16,0.16,0.64,0.32])}catch(e){}
+ try{gl.framebufferTextureLayer(gl.DRAW_FRAMEBUFFER,gl.COLOR_ATTACHMENT14,eTAtbhto,null,YfhUidvy,null,UktOmYJK,null,dOsMvhzx,null,nLpbWhiO,null,YZWqwIYQ,null,JFbkAWjU,null,jXnfHkAi,null,DwPfWZgj,null,bZbAHyxB,null,8,0)}catch(e){}
+ try{gl.invalidateSubFramebuffer(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT10,32,16,8,0)}catch(e){}
+ try{gl.compressedTexImage3D(gl.TEXTURE_2D_ARRAY,8,ext.COMPRESSED_RGBA_ASTC_8x8_KHR,128,32,4,UktOmYJK)}catch(e){}
+ try{gl.texImage3D(gl.TEXTURE_3D,2,gl.RG32F,32,512,8,2,gl.RG32F,gl.UNSIGNED_INT_10F_11F_11F_REV,array_buffer)}catch(e){}
+ try{gl.vertexAttribDivisor(16,2)}catch(e){}
+ try{gl.compressedTexImage3D(gl.TEXTURE_3D,8,ext.COMPRESSED_SRGB8_ALPHA8_ASTC_5x5_KHR,256,16,16,null)}catch(e){}
+ try{gl.getFragDataLocation(0.16,2147483646)}catch(e){}
+ try{gl.getFragDataLocation(4294967294,0.2)}catch(e){}
+ try{gl.vertexAttribI4iv(0,16)}catch(e){}
+ try{gl.endTransformFeedback()}catch(e){}
+ try{gl.vertexAttribI4iv(255,8)}catch(e){}
+ try{gl.compressedTexSubImage3D(gl.TEXTURE_2D_ARRAY,256,0,8,0,16,4,8,gl.COMPRESSED_RGBA8_ETC2_EAC,16,eTAtbhto)}catch(e){}
+ try{gl.getInternalformatParameter(0.32,16,0.32)}catch(e){}
+ try{gl.bindBufferBase(gl.TRANSFORM_FEEDBACK_BUFFER,64,QrmhbrOz)}catch(e){}
+ try{gl.copyBufferSubData(gl.PIXEL_PACK_BUFFER,gl.ARRAY_BUFFER,512,4,16)}catch(e){}
+ try{gl.createQuery()}catch(e){}
+ try{gl.isTransformFeedback(65535)}catch(e){}
+ try{gl.uniform1ui(32,4)}catch(e){}
+ try{gl.uniformMatrix3x2fv(HFPJPHsb,false,[0.32,0.2,0.32,0.16])}catch(e){}
+ try{gl.uniformMatrix3x2fv(BqFFaNXT,false,[0.32,0.32,0.64,0.64])}catch(e){}
+ try{gl.endTransformFeedback()}catch(e){}
+ try{gl.vertexAttribI4iv(0.8,8)}catch(e){}
+ try{gl.uniformMatrix3x2fv(BqFFaNXT,false,[0.64,0.32,0.16,0.64])}catch(e){}
+ try{gl.beginTransformFeedback(gl.LINES)}catch(e){}
+ try{gl.clientWaitSync(ORYFvKpT,lZDLzeGq,GuTWnGap,hxTEkrww,PyofXzRb,JoQKcahG,NrYHLFxM,wkDzMGvy,iGCsCsFA,EHXkSXgR,256,512)}catch(e){}
+ try{gl.createTransformFeedback()}catch(e){}
+ try{gl.invalidateSubFramebuffer(gl.DRAW_FRAMEBUFFER,gl.COLOR_ATTACHMENT13,16,2,4,2)}catch(e){}
+ try{gl.clientWaitSync(ORYFvKpT,lZDLzeGq,GuTWnGap,hxTEkrww,PyofXzRb,JoQKcahG,NrYHLFxM,wkDzMGvy,iGCsCsFA,EHXkSXgR,512,0)}catch(e){}
+ try{gl.getBufferSubData(2147483646,0.32,4294967295,4294967295,0.16)}catch(e){}
+ try{gl.uniformMatrix3x2fv(program,true,[0.8,0.8,0.32,0.4])}catch(e){}
+ try{gl.isSync(8192)}catch(e){}
+ try{gl.beginTransformFeedback(gl.TRIANGLES)}catch(e){}
+ try{gl.deleteQuery()}catch(e){}
+ try{gl.getActiveUniformBlockName(32,0.4)}catch(e){}
+ try{gl.deleteQuery()}catch(e){}
+ try{gl.invalidateFramebuffer(gl.READ_FRAMEBUFFER,ext.COLOR_ATTACHMENT12_WEBGL)}catch(e){}
+ try{gl.framebufferTextureLayer(gl.DRAW_FRAMEBUFFER,gl.BACK,eTAtbhto,null,YfhUidvy,null,UktOmYJK,null,dOsMvhzx,null,nLpbWhiO,null,YZWqwIYQ,null,JFbkAWjU,null,jXnfHkAi,null,DwPfWZgj,null,bZbAHyxB,null,256,128)}catch(e){}
+ try{gl.texSubImage3D(gl.TEXTURE_3D,8,2,512,256,512,4,gl.ALPHA,gl.UNSIGNED_INT_2_10_10_10_REV,sbjcMnGm)}catch(e){}
+ try{gl.getFragDataLocation(4294967295,128)}catch(e){}
+ try{gl.clearBufferfv(256,16,0.32,8192)}catch(e){}
+ try{gl.uniform2uiv(512,65535,16384,512)}catch(e){}
+ try{gl.uniform4uiv(2147483646,0,32,4291051535)}catch(e){}
+ try{gl.texImage3D(gl.TEXTURE_2D_ARRAY,256,gl.RGB,64,128,256,128,gl.RGB,gl.UNSIGNED_SHORT_5_5_5_1,EIfNPHaI)}catch(e){}
+ try{gl.deleteSampler(KbRAJaCZ,null,WZbPJRZF,null,HSIVIldG,null,MSAclNqH,null,VhUXHLVx,null,ZjRQGsJO,null,jgRQlHNP,null,MdMleqFs,null,SZSrdbZt,null,XlLIRHxo,null)}catch(e){}
+ try{gl.isSync(2147483647)}catch(e){}
+ try{gl.compressedTexImage3D(gl.TEXTURE_3D,32,ext.COMPRESSED_SIGNED_R11_EAC,2,64,32,null)}catch(e){}
+ try{gl.getActiveUniformBlockParameter(0,64,4294967294)}catch(e){}
+ try{gl.vertexAttribDivisor(32,32)}catch(e){}
+ try{gl.vertexAttribDivisor(2,64)}catch(e){}
+ try{gl.pauseTransformFeedback()}catch(e){}
+ try{gl.texImage3D(gl.TEXTURE_3D,128,gl.RGBA4444,512,0,8,512,gl.RGBA4444,gl.UNSIGNED_SHORT_5_5_5_1,bxCgGGoc)}catch(e){}
+ try{gl.bindSampler(32768,0.64)}catch(e){}
+ try{gl.deleteQuery()}catch(e){}
+ try{gl.deleteVertexArray(BofriiCk)}catch(e){}
+ try{gl.transformFeedbackVaryings(128,2147483647,16384)}catch(e){}
+ try{gl.uniform4ui(255,64,4294967294,2147483647,2)}catch(e){}
+ try{gl.uniformMatrix4x3fv(BqFFaNXT,false,[0.32,0.16,0.64,0.4])}catch(e){}
+ try{gl.texStorage2D(gl.TEXTURE_2D_ARRAY,2,gl.RGB10_A2UI,8,16)}catch(e){}
+ try{gl.isTransformFeedback(0.32)}catch(e){}
+ try{gl.deleteVertexArray(yQFOrYpi)}catch(e){}
+ try{gl.compressedTexImage3D(gl.TEXTURE_2D_ARRAY,512,ext.COMPRESSED_RGB8_ETC2,0,16,256,null)}catch(e){}
+ try{gl.uniformMatrix2x3fv(program,false,[0.4,0.16,0.4,0.16])}catch(e){}
+ try{gl.vertexAttribI4iv(2147483648,65534)}catch(e){}
+ try{gl.beginTransformFeedback(gl.POINTS)}catch(e){}
+ try{gl.vertexAttribDivisor(512,64)}catch(e){}
+ try{gl.getQueryParameter(0.64,255)}catch(e){}
+ try{gl.uniform3uiv(0.2,0.2,1,4294967294)}catch(e){}
+ try{gl.texImage3D(gl.TEXTURE_3D,16,gl.R8UI,128,128,16,512,gl.R8UI,gl.INT,fEgKssOz)}catch(e){}
+ try{gl.vertexAttribI4iv(4294967295,65534)}catch(e){}
+ try{gl.pauseTransformFeedback()}catch(e){}
+ try{gl.uniformMatrix3x2fv(program,false,[0.64,0.64,0.16,0.4])}catch(e){}
+ try{gl.texImage3D(gl.TEXTURE_3D,2,gl.R11F_G11F_B10F,16,2,2,128,gl.R11F_G11F_B10F,gl.SHORT,hgYnVnVW)}catch(e){}
+ try{gl.deleteQuery()}catch(e){}
+ try{gl.endQuery(gl.ANY_SAMPLES_PASSED)}catch(e){}
+ try{gl.bindTransformFeedback(65534,65534)}catch(e){}
+ try{gl.deleteQuery()}catch(e){}
+ try{gl.transformFeedbackVaryings(0.8,4,2147483647)}catch(e){}
+ try{gl.uniform2uiv(32,2147483646,1,255)}catch(e){}
+ try{gl.uniform4ui(16384,32768,2147483646,2147483647,0.32)}catch(e){}
+ try{gl.uniform3ui(1,16384,32767,4)}catch(e){}
+ try{gl.getActiveUniformBlockName(0.8,4294967295)}catch(e){}
+ try{gl.texSubImage3D(gl.TEXTURE_2D_ARRAY,64,32,512,512,8,512,gl.RGB565,gl.UNSIGNED_INT,ggJMUVjW)}catch(e){}
+ try{gl.uniformMatrix2x4fv(HFPJPHsb,true,[0.64,0.64,0.64,0.2])}catch(e){}
+ try{gl.isSync(32)}catch(e){}
+
+    }
+    </script></head>
+    <body onload=corrupt()>
+    </body></html>
+    

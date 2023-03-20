@@ -13,6 +13,12 @@ Array.prototype.shuffle = function () {
     return this;
 }
 
+Or = function () {
+    if (Or.arguments.length == 1 && typeof (Or.arguments) == "object")
+        return Random.index(Or.arguments[0]);
+    return Random.index(Or.arguments);
+}
+
 tiny_values = [0, 2, 4, 8, 16, 32, 64, 128, 256, 512];
 
 small_values = [
@@ -37,6 +43,23 @@ high_values = [
     0x7ffffffe
 ];
 
+Uint8Array_values = [
+    100,
+    1000,
+    10000,
+    100000,
+    3000,
+    30000,
+    new Array(0xB0).fill(0x77),
+    0xffff,
+    0x7fff,
+    0x8000,
+    0, 2, 4, 8, 16, 32, 64, 128, 256, 512,
+    0x0, // x/0
+    0x7ffe,
+    0xfffe,
+    0xff    
+]
 
 var Random = {
     number: function (n) {
@@ -50,11 +73,6 @@ var Random = {
     }
 }
 
-Or = function () {
-    if (Or.arguments.length == 1 && typeof (Or.arguments) == "object")
-        return Random.index(Or.arguments[0]);
-    return Random.index(Or.arguments);
-}
 
 O = function (item) {
     return Random.number(2) == 0 ? item : "";
@@ -121,6 +139,10 @@ number = function () {
     if (conf_uhvals)
         return Or(Or(high_values), Or(small_values), Or(tiny_values), float());
     return Or(Or(small_values), Or(tiny_values), float());
+}
+
+number_Uint8Array = function(){
+    return Or(Uint8Array_values)
 }
 
 dirt = function () {
